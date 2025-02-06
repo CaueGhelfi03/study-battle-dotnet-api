@@ -9,7 +9,7 @@ namespace TaskSystem.Repostories.Interfaces.UserRepository
         Task<UserEntity> GetByIdAsync(Guid id);
         Task<UserEntity> AddUserAsync(UserEntity user);
         Task<UserEntity> UpdateUserAsync(Guid id, UserEntity user);
-        Task<bool> DeleteUserAsync(Guid id);
+        Task<bool?> DeleteUserAsync(Guid id);
         Task<bool> ExistsEmailAsync(string email);
 
     }

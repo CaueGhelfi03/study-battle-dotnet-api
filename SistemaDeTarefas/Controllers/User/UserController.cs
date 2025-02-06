@@ -14,7 +14,7 @@ namespace SistemaDeTarefas.Controllers.User
     public class UserController(IUserService _userService) : Controller
     {
         [HttpPost]
-        public async Task<ActionResult> CreateUser([FromBody] UserRequestDTO userRequest)
+        public async Task<ActionResult> CreateAsync([FromBody] UserRequestDTO userRequest)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace SistemaDeTarefas.Controllers.User
 
 
         [HttpGet]
-        public async Task<ActionResult<List<UserResponseDTO>>> GetAllUsers()
+        public async Task<ActionResult<List<UserResponseDTO>>> GetAllAsync()
         {
             try
             {
@@ -40,6 +40,48 @@ namespace SistemaDeTarefas.Controllers.User
                 return Ok(users);
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<UserResponseDTO>> GetByIdAsync([FromRoute] Guid id)
+        {
+            try
+            {
+                var user = await _userService.GetByIdAsync(id);
+                return Ok(user);
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<UserResponseDTO>> UpdateAsync([FromRoute] Guid id, [FromBody] UserRequestDTO userRequest)
+        {
+            try
+            {
+                var user = await _userService.UpdateUserAsync(userRequest,id);
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("/{id}")]
+        [HttpDelete]
+            public async Task<ActionResult<bool?>> DeleteAsync([FromRoute] Guid id)
+        {
+            try
+            {
+                 await _userService.DeleteUserAsync(id);
+                return NoContent();
+            }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

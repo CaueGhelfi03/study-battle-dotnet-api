@@ -1,0 +1,47 @@
+# Pastas de build
+bin/
+obj/
+out/
+
+# Arquivos de configuração do Visual Studio
+.vs/
+*.user
+*.suo
+*.vscode/
+*.code-workspace
+
+# Dependências do .NET
+packages/
+project.lock.json
+project.assets.json
+
+# Arquivos de log e cache
+*.log
+*.cache
+*.pdb
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.sln.docstates
+
+# Arquivos de configuração sensíveis
+secrets.json
+.env
+
+# Arquivos gerados pelo NuGet
+*.nupkg
+.nuget/
+
+# Arquivos do Rider e Resharper
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# Arquivos do Mac/Linux
+.DS_Store
+Thumbs.db
+
+Migrations/
+
+docker-compose.override.yml

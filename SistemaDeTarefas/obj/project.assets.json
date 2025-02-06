@@ -1711,6 +1711,25 @@
             "rid": "win"
           }
         }
+      },
+      "StudyBattle.core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "13.0.1",
+          "Microsoft.EntityFrameworkCore": "9.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/StudyBattle.core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StudyBattle.core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5190,6 +5209,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "StudyBattle.core/1.0.0": {
+      "type": "project",
+      "path": "../StudyBattle.core/StudyBattle.core.csproj",
+      "msbuildProject": "../StudyBattle.core/StudyBattle.core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5199,27 +5223,28 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
+      "StudyBattle.core >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ghelf\\.nuget\\packages\\": {},
+    "C:\\Users\\Alfa User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\TaskSystem.csproj",
-      "projectName": "TaskSystem",
-      "projectPath": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\TaskSystem.csproj",
-      "packagesPath": "C:\\Users\\ghelf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\obj\\",
+      "projectUniqueName": "C:\\Users\\Alfa User\\Documents\\Estudo\\projeto caue\\ToDoList-ASP.NET\\SistemaDeTarefas\\StudyBattle.api.csproj",
+      "projectName": "StudyBattle.api",
+      "projectPath": "C:\\Users\\Alfa User\\Documents\\Estudo\\projeto caue\\ToDoList-ASP.NET\\SistemaDeTarefas\\StudyBattle.api.csproj",
+      "packagesPath": "C:\\Users\\Alfa User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alfa User\\Documents\\Estudo\\projeto caue\\ToDoList-ASP.NET\\SistemaDeTarefas\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ghelf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alfa User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5228,25 +5253,24 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Alfa User\\Documents\\Estudo\\projeto caue\\ToDoList-ASP.NET\\StudyBattle.core\\StudyBattle.core.csproj": {
+              "projectPath": "C:\\Users\\Alfa User\\Documents\\Estudo\\projeto caue\\ToDoList-ASP.NET\\StudyBattle.core\\StudyBattle.core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -5300,7 +5324,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
