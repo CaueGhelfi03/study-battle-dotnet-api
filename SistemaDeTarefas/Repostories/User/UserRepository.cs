@@ -7,7 +7,7 @@ using TaskSystem.Repostories.Interfaces.UserRepository;
 
 namespace TaskSystem.Repostories.UserRepository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository 
     {
         private readonly TaskSystemDBContext _dbContext;
 
@@ -47,7 +47,7 @@ namespace TaskSystem.Repostories.UserRepository
                 _dbContext.Users.Update(userById);
                 return userById;
         }
-        public async Task<bool> DeleteUserAsync(Guid id)
+        public async Task<bool?> DeleteUserAsync(Guid id)
         {
             UserEntity userById = await GetByIdAsync(id);
                 _dbContext.Users.Remove(userById);

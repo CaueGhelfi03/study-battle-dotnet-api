@@ -1,6 +1,10 @@
 
+using Microsoft.EntityFrameworkCore;
 using SistemaDeTarefas.Data;
+using StudyBattle.api.Services.Generic;
+using StudyBattle.api.Services.Interfaces.Generic;
 using TaskSystem.Domain.Mapper.User;
+using TaskSystem.Domain.Models.Task;
 using TaskSystem.Repostories.Interfaces.UserRepository;
 using TaskSystem.Repostories.UserRepository;
 using TaskSystem.Services.Common;
@@ -20,11 +24,14 @@ namespace SistemaDeTarefas
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(typeof(AutoMapperUserProfile));
+            builder.Services.AddDbContext<TaskSystemDBContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             #region Services
             builder.Services.AddDbContext<TaskSystemDBContext>();
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<ICommonService, CommonService>();
+            builder.Services.AddTransient(typeof(IGenericService<,,,>), typeof(GenericService<,,,>));
             #endregion
 
 
@@ -32,6 +39,7 @@ namespace SistemaDeTarefas
 
 
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient(typeof(IGenericService<,,,>), typeof(GenericService<,,,>));
 
            
 

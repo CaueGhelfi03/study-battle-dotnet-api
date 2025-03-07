@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
+using TaskSystem.core.Domain.DTOs.UserDTO;
 using TaskSystem.Domain.DTOs.UserDTO;
 using TaskSystem.Domain.Models.User;
 using TaskSystem.Services.Interfaces.User;
@@ -26,7 +27,6 @@ namespace SistemaDeTarefas.Controllers.User
             }
         }
 
-
         [HttpGet]
         public async Task<ActionResult<List<UserResponseDTO>>> GetAllAsync()
         {
@@ -44,7 +44,8 @@ namespace SistemaDeTarefas.Controllers.User
                 return BadRequest(ex.Message);
             }
         }
-        [Route("/{id}")]
+
+        [Route("/api/[controller]/{id}")]
         [HttpGet]
         public async Task<ActionResult<UserResponseDTO>> GetByIdAsync([FromRoute] Guid id)
         {
@@ -61,11 +62,11 @@ namespace SistemaDeTarefas.Controllers.User
         }
 
         [HttpPatch]
-        public async Task<ActionResult<UserResponseDTO>> UpdateAsync([FromRoute] Guid id, [FromBody] UserRequestDTO userRequest)
+        public async Task<ActionResult<UserResponseDTO>> UpdateAsync([FromRoute] Guid id, [FromBody] UserUpdateDTO userRequest)
         {
             try
             {
-                var user = await _userService.UpdateUserAsync(userRequest,id);
+                var user = await _userService.UpdateAsync(id,userRequest);
                 return Ok(user);
             }
             catch(Exception ex)
@@ -73,13 +74,15 @@ namespace SistemaDeTarefas.Controllers.User
                 return BadRequest(ex.Message);
             }
         }
-        [Route("/{id}")]
+
+
+        [Route("/api/[controller]/{id}")]
         [HttpDelete]
             public async Task<ActionResult<bool?>> DeleteAsync([FromRoute] Guid id)
         {
             try
             {
-                 await _userService.DeleteUserAsync(id);
+                 await _userService.DeleteAsync(id);
                 return NoContent();
             }catch(Exception ex)
             {

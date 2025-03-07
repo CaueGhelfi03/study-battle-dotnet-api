@@ -1,14 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\",
+  "WorkspaceRootPath": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\TaskSystem.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\new folder\\sistemadetarefas\\sistemadetarefas\\domain\\dtos\\taskdto\\taskrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\TaskSystem.csproj|solutionrelative:sistemadetarefas\\domain\\dtos\\taskdto\\taskrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\services\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\services\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\TaskSystem.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\new folder\\sistemadetarefas\\sistemadetarefas\\controllers\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\TaskSystem.csproj|solutionrelative:sistemadetarefas\\controllers\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\services\\interfaces\\challenge\\ichallengeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\services\\interfaces\\challenge\\ichallengeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\services\\challenge\\challengeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\services\\challenge\\challengeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}|TaskSystemCore\\TaskSystem.core.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\tasksystemcore\\data\\tasksystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}|TaskSystemCore\\TaskSystem.core.csproj|solutionrelative:tasksystemcore\\data\\tasksystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}|TaskSystemCore\\TaskSystem.core.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\tasksystemcore\\domain\\dtos\\challengedto\\challengecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}|TaskSystemCore\\TaskSystem.core.csproj|solutionrelative:tasksystemcore\\domain\\dtos\\challengedto\\challengecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\services\\generic\\genericservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\services\\generic\\genericservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|c:\\users\\ghelf\\onedrive\\desktop\\projetos\\desafios\\studybattle\\sistemadetarefas\\sistemadetarefas\\services\\interfaces\\user\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C202FC44-F01E-400B-AEA2-B369E61AFBBA}|SistemaDeTarefas\\StudyBattle.api.csproj|solutionrelative:sistemadetarefas\\services\\interfaces\\user\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,29 +50,116 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\Controllers\\User\\UserController.cs",
-              "RelativeDocumentMoniker": "SistemaDeTarefas\\Controllers\\User\\UserController.cs",
-              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\Controllers\\User\\UserController.cs",
-              "RelativeToolTip": "SistemaDeTarefas\\Controllers\\User\\UserController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T01:18:45.891Z",
-              "EditorCaption": ""
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\appsettings.json",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\appsettings.json",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\appsettings.json",
+              "RelativeToolTip": "SistemaDeTarefas\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-06T18:33:18.216Z",
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TaskRequestDTO.cs",
-              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\Domain\\DTOs\\TaskDTO\\TaskRequestDTO.cs",
-              "RelativeDocumentMoniker": "SistemaDeTarefas\\Domain\\DTOs\\TaskDTO\\TaskRequestDTO.cs",
-              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\New folder\\SistemaDeTarefas\\SistemaDeTarefas\\Domain\\DTOs\\TaskDTO\\TaskRequestDTO.cs",
-              "RelativeToolTip": "SistemaDeTarefas\\Domain\\DTOs\\TaskDTO\\TaskRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\User\\UserService.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Services\\User\\UserService.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\User\\UserService.cs*",
+              "RelativeToolTip": "SistemaDeTarefas\\Services\\User\\UserService.cs*",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwAIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T01:18:37.665Z",
+              "WhenOpened": "2025-03-07T00:29:58.427Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChallengeService.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Challenge\\ChallengeService.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Services\\Challenge\\ChallengeService.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Challenge\\ChallengeService.cs*",
+              "RelativeToolTip": "SistemaDeTarefas\\Services\\Challenge\\ChallengeService.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T00:29:43.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Program.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Program.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Program.cs",
+              "RelativeToolTip": "SistemaDeTarefas\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T18:35:54.211Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TaskSystemDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\TaskSystemCore\\Data\\TaskSystemDBContext.cs",
+              "RelativeDocumentMoniker": "TaskSystemCore\\Data\\TaskSystemDBContext.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\TaskSystemCore\\Data\\TaskSystemDBContext.cs",
+              "RelativeToolTip": "TaskSystemCore\\Data\\TaskSystemDBContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA8wBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T18:24:29.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChallengeCreateDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\TaskSystemCore\\Domain\\DTOs\\ChallengeDTO\\ChallengeCreateDTO.cs",
+              "RelativeDocumentMoniker": "TaskSystemCore\\Domain\\DTOs\\ChallengeDTO\\ChallengeCreateDTO.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\TaskSystemCore\\Domain\\DTOs\\ChallengeDTO\\ChallengeCreateDTO.cs",
+              "RelativeToolTip": "TaskSystemCore\\Domain\\DTOs\\ChallengeDTO\\ChallengeCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T14:54:18.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IChallengeService.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Interfaces\\Challenge\\IChallengeService.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Services\\Interfaces\\Challenge\\IChallengeService.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Interfaces\\Challenge\\IChallengeService.cs*",
+              "RelativeToolTip": "SistemaDeTarefas\\Services\\Interfaces\\Challenge\\IChallengeService.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T14:52:50.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GenericService.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Generic\\GenericService.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Services\\Generic\\GenericService.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Generic\\GenericService.cs",
+              "RelativeToolTip": "SistemaDeTarefas\\Services\\Generic\\GenericService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T14:51:22.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Interfaces\\User\\IUserService.cs",
+              "RelativeDocumentMoniker": "SistemaDeTarefas\\Services\\Interfaces\\User\\IUserService.cs",
+              "ToolTip": "C:\\Users\\ghelf\\OneDrive\\Desktop\\Projetos\\DESAFIOS\\StudyBattle\\SistemaDeTarefas\\SistemaDeTarefas\\Services\\Interfaces\\User\\IUserService.cs",
+              "RelativeToolTip": "SistemaDeTarefas\\Services\\Interfaces\\User\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T14:51:59.295Z"
             }
           ]
         }

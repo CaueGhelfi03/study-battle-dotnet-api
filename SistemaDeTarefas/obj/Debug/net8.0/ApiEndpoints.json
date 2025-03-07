@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "SistemaDeTarefas.Controllers.User.UserController",
-    "Method": "CreateUser",
+    "Method": "CreateAsync",
     "RelativePath": "api/User",
     "HttpMethod": "POST",
     "IsController": true,
@@ -17,7 +17,7 @@
   },
   {
     "ContainingType": "SistemaDeTarefas.Controllers.User.UserController",
-    "Method": "GetAllUsers",
+    "Method": "GetAllAsync",
     "RelativePath": "api/User",
     "HttpMethod": "GET",
     "IsController": true,
@@ -25,7 +25,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[TaskSystem.Domain.DTOs.UserDTO.UserResponseDTO, TaskSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[TaskSystem.Domain.DTOs.UserDTO.UserResponseDTO, TaskSystem.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -36,16 +36,27 @@
     ]
   },
   {
-    "ContainingType": "SistemaDeTarefas.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
+    "ContainingType": "SistemaDeTarefas.Controllers.User.UserController",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/User",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "userRequest",
+        "Type": "TaskSystem.Domain.DTOs.UserDTO.UserRequestDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[SistemaDeTarefas.WeatherForecast, TaskSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "TaskSystem.Domain.DTOs.UserDTO.UserResponseDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -53,7 +64,58 @@
         ],
         "StatusCode": 200
       }
+    ]
+  },
+  {
+    "ContainingType": "SistemaDeTarefas.Controllers.User.UserController",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/User/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": [
+      {
+        "Type": "TaskSystem.Domain.DTOs.UserDTO.UserResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SistemaDeTarefas.Controllers.User.UserController",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/User/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
