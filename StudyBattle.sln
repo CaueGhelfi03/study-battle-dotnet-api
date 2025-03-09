@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyBattle.api", "SistemaDeTarefas\StudyBattle.api.csproj", "{C202FC44-F01E-400B-AEA2-B369E61AFBBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskSystem.core", "TaskSystemCore\TaskSystem.core.csproj", "{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBattle.core", "TaskSystemCore\StudyBattle.core.csproj", "{1EDEC1A2-3B84-4830-AC05-8EDCDFF2F2DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

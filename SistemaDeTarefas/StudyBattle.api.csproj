@@ -28,7 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskSystemCore\TaskSystem.core.csproj" />
+    <ProjectReference Include="..\TaskSystemCore\StudyBattle.core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repostories\Challenge\" />
   </ItemGroup>
 
 </Project>

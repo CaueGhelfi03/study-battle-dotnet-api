@@ -2,7 +2,7 @@
 
 namespace StudyBattle.core.Domain.DTOs.RankingDTO
 {
-    public record RankingRequestDTO
+    public record RankingCreateDTO
     {
         public Guid IdRanking { get; set; }
         public Guid ChallengeId { get; set; }

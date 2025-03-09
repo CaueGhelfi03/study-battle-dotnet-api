@@ -13,7 +13,7 @@ using TaskSystem.Services.Interfaces.User;
 
 namespace TaskSystem.Services.UserService
 {
-    public class UserService : GenericService<UserEntity, UserRequestDTO, UserUpdateDTO, UserResponseDTO>, IUserService
+    public class UserService : GenericService<UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
@@ -30,7 +30,7 @@ namespace TaskSystem.Services.UserService
         }
 
         // Método específico para User
-        public async Task<UserResponseDTO> AddUserAsync(UserRequestDTO user)
+        public async Task<UserResponseDTO> AddUserAsync(UserCreateDTO user)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace TaskSystem.Services.UserService
 
                 string hashedPassword = _commonService.PasswordEncoder(user.UserPassword);
 
-                var newUser = new UserRequestDTO
+                var newUser = new UserCreateDTO
                 {
                     Email = user.Email,
                     UserPassword = hashedPassword,

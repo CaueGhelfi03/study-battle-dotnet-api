@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskSystem.Domain.Enums.Status;
+using TaskSystem.Domain.Models.User;
 
 namespace StudyBattle.core.Domain.Entities.Challenge
 {
@@ -31,6 +32,8 @@ namespace StudyBattle.core.Domain.Entities.Challenge
 
         [Column("challenge_status")]
         public StatusEnum status { get; set; }
+
+        public ICollection<UserEntity> Users { get; set; } = new List<UserEntity>();
 
     }
 }

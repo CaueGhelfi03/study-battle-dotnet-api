@@ -15,7 +15,7 @@ namespace SistemaDeTarefas.Controllers.User
     public class UserController(IUserService _userService) : Controller
     {
         [HttpPost]
-        public async Task<ActionResult> CreateAsync([FromBody] UserRequestDTO userRequest)
+        public async Task<ActionResult> CreateAsync([FromBody] UserCreateDTO userRequest)
         {
             try
             {

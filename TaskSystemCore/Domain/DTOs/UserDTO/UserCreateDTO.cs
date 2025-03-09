@@ -1,6 +1,6 @@
 ﻿namespace TaskSystem.Domain.DTOs.UserDTO
 {
-    public record UserRequestDTO
+    public record UserCreateDTO
     {
         public string Name { get; set; }
 
