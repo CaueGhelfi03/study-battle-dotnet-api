@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyBattle.API", "StudyBattle.API\StudyBattle.API.csproj", "{C79B8155-B6B0-4978-A0B1-16D95FA8FB71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskSystem.Core", "TaskSystem.Core\TaskSystem.Core.csproj", "{35CEC656-EAD4-458F-9BE0-D6871DAE8164}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{18C45A8B-643B-45EB-87D6-9181CD89D4E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C79B8155-B6B0-4978-A0B1-16D95FA8FB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79B8155-B6B0-4978-A0B1-16D95FA8FB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79B8155-B6B0-4978-A0B1-16D95FA8FB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79B8155-B6B0-4978-A0B1-16D95FA8FB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CEC656-EAD4-458F-9BE0-D6871DAE8164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CEC656-EAD4-458F-9BE0-D6871DAE8164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CEC656-EAD4-458F-9BE0-D6871DAE8164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CEC656-EAD4-458F-9BE0-D6871DAE8164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C79B8155-B6B0-4978-A0B1-16D95FA8FB71} = {18C45A8B-643B-45EB-87D6-9181CD89D4E5}
+		{35CEC656-EAD4-458F-9BE0-D6871DAE8164} = {18C45A8B-643B-45EB-87D6-9181CD89D4E5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E702A28-E907-4BC8-B618-7A07BF7AA5CD}
+	EndGlobalSection
+EndGlobal
