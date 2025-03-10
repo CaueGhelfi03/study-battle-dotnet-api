@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Mvc;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.Models.User;
 using TaskSystem.Core.Utils.Extensions;
-using TaskSystem.Services.Interfaces.User;
-using TaskSystem.Services.UserService;
+using StudyBattle.API.Interfaces.User;
 
 namespace SistemaDeTarefas.Controllers.User
 {
@@ -16,13 +10,14 @@ namespace SistemaDeTarefas.Controllers.User
     public class UserController(IUserService _userService) : Controller
     {
         [HttpPost]
-        public async Task<ActionResult> CreateAsync([FromBody] UserRequestDTO userRequest)
+        public async Task<ActionResult> CreateAsync([FromBody] UserCreateDTO userRequest)
         {
             try
             {
                 var createdUser = await _userService.AddUserAsync(userRequest);
+
                 return Created();
-            }catch(Exception ex)
+            } catch(Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
@@ -35,7 +30,7 @@ namespace SistemaDeTarefas.Controllers.User
             {
                 var users = await _userService.GetAllAsync();
 
-                if (users is null || !users.SafeAny())
+                if (!users.SafeAny())
                     return NoContent();
                 
                 return Ok(users);

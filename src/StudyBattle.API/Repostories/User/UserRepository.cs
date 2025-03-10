@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaDeTarefas.Data;
-using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.Mapper.User;
 using TaskSystem.Core.Domain.Models.User;
 using TaskSystem.Repostories.Interfaces.UserRepository;
 

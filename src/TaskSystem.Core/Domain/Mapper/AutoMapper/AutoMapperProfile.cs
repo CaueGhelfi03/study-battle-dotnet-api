@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
+using TaskSystem.Core.Domain.Entities.Challenge;
 using TaskSystem.Core.Domain.DTOs.TaskDTO;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
 using TaskSystem.Core.Domain.Models.Task;
@@ -6,16 +8,19 @@ using TaskSystem.Core.Domain.Models.User;
 
 namespace TaskSystem.Core.Domain.Mapper.User
 {
-    public class AutoMapperUserProfile : Profile
+    public class AutoMapperProfile : Profile
     {
 
-        public AutoMapperUserProfile() {
+        public AutoMapperProfile() {
+
+            #region Generic
+
+            #endregion
 
             #region User
 
             CreateMap<UserEntity, UserResponseDTO>().ReverseMap();
-            CreateMap<UserRequestDTO, UserEntity>().ReverseMap();
-            CreateMap<UserRequestDTO, UserResponseDTO>().ReverseMap();
+            CreateMap<UserCreateDTO, UserEntity>().ReverseMap();
 
             #endregion
 
@@ -25,11 +30,13 @@ namespace TaskSystem.Core.Domain.Mapper.User
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.Challenge, opt => opt.MapFrom(src => src.Challenge));
 
-
-
             #endregion
 
             #region Challenge
+
+            CreateMap<ChallengeEntity, ChallengeResponseDTO>().ReverseMap();
+            CreateMap<ChallengeCreateDTO, ChallengeEntity>().ReverseMap();
+            CreateMap<ChallengeUpdateDTO, ChallengeEntity>().ReverseMap();
 
             #endregion
         }

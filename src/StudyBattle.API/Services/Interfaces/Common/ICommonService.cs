@@ -1,4 +1,4 @@
-﻿namespace TaskSystem.Services.Interfaces.ICommon
+﻿namespace StudyBattle.API.Interfaces.ICommon
 {
     public interface ICommonService
     {

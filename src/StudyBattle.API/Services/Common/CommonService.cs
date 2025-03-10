@@ -4,9 +4,9 @@ using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using System.Net.Mail;
 using System.Security.Cryptography;
-using TaskSystem.Services.Interfaces.ICommon;
+using StudyBattle.API.Interfaces.ICommon;
 
-namespace TaskSystem.Services.Common
+namespace StudyBattle.API.Common
 {
     public class CommonService : ICommonService
     {

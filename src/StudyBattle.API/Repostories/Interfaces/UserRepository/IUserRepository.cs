@@ -1,5 +1,4 @@
-﻿using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.Models.User;
+﻿using TaskSystem.Core.Domain.Models.User;
 
 namespace TaskSystem.Repostories.Interfaces.UserRepository
 {

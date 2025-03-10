@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
+using TaskSystem.Core.Domain.Entities.Challenge;
+using TaskSystem.Core.Domain.Models.Task;
 
 namespace TaskSystem.Core.Domain.Models.User
 {
-    [Table("Users")]
+    [Table("User")]
     public class UserEntity
     {
         [Column("user_id")]
@@ -23,8 +24,8 @@ namespace TaskSystem.Core.Domain.Models.User
         [Column("user_password")]
         [Required]
         public string UserPassword {  get; set; }
-    
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        public ICollection<TaskEntity> Tasks = [];
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

@@ -22,7 +22,7 @@ namespace TaskSystem.Core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("StudyBattle.core.Domain.Entities.Challenge.ChallengeEntity", b =>
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,6 +61,39 @@ namespace TaskSystem.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Challenge");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Ranking.RankingEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ChallengeId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("ranking_challengeId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ranking_createdAt");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ranking_updatedAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ranking");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Score.ScoreEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Score");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.Task.TaskEntity", b =>
@@ -102,7 +135,7 @@ namespace TaskSystem.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Task");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.User.UserEntity", b =>
@@ -111,6 +144,9 @@ namespace TaskSystem.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("user_id");
+
+                    b.Property<Guid?>("ChallengeEntityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -132,12 +168,25 @@ namespace TaskSystem.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("ChallengeEntityId");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Ranking.RankingEntity", b =>
+                {
+                    b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Challenge");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.Task.TaskEntity", b =>
                 {
-                    b.HasOne("StudyBattle.core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
+                    b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
                         .WithMany()
                         .HasForeignKey("ChallengeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -152,6 +201,18 @@ namespace TaskSystem.Core.Migrations
                     b.Navigation("Challenge");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Models.User.UserEntity", b =>
+                {
+                    b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", null)
+                        .WithMany("Users")
+                        .HasForeignKey("ChallengeEntityId");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

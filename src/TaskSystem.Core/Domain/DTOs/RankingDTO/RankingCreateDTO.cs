@@ -1,8 +1,8 @@
-﻿using StudyBattle.core.Domain.DTOs.UserDTO;
+﻿using TaskSystem.Core.Domain.DTOs.UserDTO;
 
-namespace StudyBattle.core.Domain.DTOs.RankingDTO
+namespace TaskSystem.Core.Domain.DTOs.RankingDTO
 {
-    public record RankingRequestDTO
+    public record RankingCreateDTO
     {
         public Guid IdRanking { get; set; }
         public Guid ChallengeId { get; set; }
