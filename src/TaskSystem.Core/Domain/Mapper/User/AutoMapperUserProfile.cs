@@ -14,8 +14,9 @@ namespace TaskSystem.Core.Domain.Mapper.User
             #region User
 
             CreateMap<UserEntity, UserResponseDTO>().ReverseMap();
-            CreateMap<UserRequestDTO, UserEntity>().ReverseMap();
-            CreateMap<UserRequestDTO, UserResponseDTO>().ReverseMap();
+            CreateMap<UserEntity, UserRequestDTO>().ReverseMap();
+            CreateMap<UserEntity, UserUpdateDTO>().ReverseMap()
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
 
             #endregion
 

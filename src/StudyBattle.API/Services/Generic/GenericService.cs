@@ -87,14 +87,17 @@ namespace StudyBattle.API.Services.Generic
         {
             try
             {
-                if(updateDTO == null) throw new ArgumentException(nameof(updateDTO));
+                if (updateDTO is null) 
+                    throw new ArgumentException("Update object cannot be null or empty.");
 
-                var entitySearched = await _repository.GetByIdAsync(id) ?? throw new DirectoryNotFoundException("Entity not found");
+                var entity = await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Entity not found");
 
-                _mapper.Map(updateDTO, entitySearched);
-                var updatedEntity = await _repository.UpdateAsync(id, entitySearched);
+                _mapper.Map(updateDTO, entity);
+
+                var updatedEntity = await _repository.UpdateAsync(id, entity);
 
                 var mappedEntity = _mapper.Map<TResponseDTO>(updatedEntity);
+
                 return mappedEntity;
             }
             catch (Exception ex)

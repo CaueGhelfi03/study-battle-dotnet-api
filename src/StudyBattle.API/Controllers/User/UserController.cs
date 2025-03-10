@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.DTOs.UserDTO;
-using TaskSystem.Core.Domain.Models.User;
 using TaskSystem.Core.Utils.Extensions;
 using TaskSystem.Services.Interfaces.User;
-using TaskSystem.Services.UserService;
 
 namespace SistemaDeTarefas.Controllers.User
 {
@@ -63,16 +58,21 @@ namespace SistemaDeTarefas.Controllers.User
         }
 
         [HttpPatch]
-        public async Task<ActionResult<UserResponseDTO>> UpdateAsync([FromRoute] Guid id, [FromBody] UserUpdateDTO userRequest)
+        public async Task<ActionResult<UserResponseDTO>> UpdateAsync([Required][FromQuery] Guid id, [FromBody] UserUpdateDTO userRequest)
         {
             try
             {
-                var user = await _userService.UpdateAsync(id,userRequest);
+                var user = await _userService.UpdateAsync(id, userRequest);
+
                 return Ok(user);
             }
-            catch(Exception ex)
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException);
             }
         }
 
