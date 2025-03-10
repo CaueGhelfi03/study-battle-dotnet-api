@@ -8,8 +8,7 @@ namespace TaskSystem.Core.Domain.DTOs.UserDTO
 {
     public record UserUpdateDTO
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-
+        public string? Name { get; set; }
+        public string? Email { get; set; }
     }
 }
