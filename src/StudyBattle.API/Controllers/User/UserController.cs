@@ -18,7 +18,8 @@ namespace SistemaDeTarefas.Controllers.User
                 var createdUser = await _userService.AddUserAsync(userRequest);
 
                 return Created();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
@@ -33,7 +34,7 @@ namespace SistemaDeTarefas.Controllers.User
 
                 if (!users.SafeAny())
                     return NoContent();
-                
+
                 return Ok(users);
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace SistemaDeTarefas.Controllers.User
                 return Ok(user);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -80,13 +81,14 @@ namespace SistemaDeTarefas.Controllers.User
 
         [Route("/api/[controller]/{id}")]
         [HttpDelete]
-            public async Task<ActionResult<bool?>> DeleteAsync([FromRoute] Guid id)
+        public async Task<ActionResult<bool?>> DeleteAsync([FromRoute] Guid id)
         {
             try
             {
-                 await _userService.DeleteAsync(id);
+                await _userService.DeleteAsync(id);
                 return NoContent();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

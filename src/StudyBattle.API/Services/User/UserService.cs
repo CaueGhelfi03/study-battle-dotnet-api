@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
+using StudyBattle.API.Interfaces.ICommon;
+using StudyBattle.API.Interfaces.User;
 using StudyBattle.API.Repostories.Interfaces.GenericRepository;
 using StudyBattle.API.Services.Generic;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
 using TaskSystem.Core.Domain.Models.User;
 using TaskSystem.Repostories.Interfaces.UserRepository;
-using StudyBattle.API.Interfaces.ICommon;
-using StudyBattle.API.Interfaces.User;
-using TaskSystem.Core.Utils.Extensions;
 
 namespace StudyBattle.API.UserService
 {
