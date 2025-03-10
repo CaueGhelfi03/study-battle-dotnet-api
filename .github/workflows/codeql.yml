@@ -23,7 +23,7 @@ jobs:
       matrix:
         include:
         - language: csharp
-          build-mode: manual
+          build-mode: autobuild
 
     steps:
     - name: Checkout repository
@@ -35,15 +35,6 @@ jobs:
       with:
         dotnet-version: 8.x
         dotnet-quality: daily
-
-    # Build the application before initializing CodeQL
-    - name: Build da aplicação
-      if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        dotnet clean src/TaskSystemAPI.sln
-        dotnet restore src/TaskSystemAPI.sln
-        dotnet build src/TaskSystemAPI.sln --configuration Release --no-restore
 
     # Initialize CodeQL (after build)
     - name: Initialize CodeQL
