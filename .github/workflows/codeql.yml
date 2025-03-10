@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: [ "develop" ]
   schedule:
-    - cron: '22 8 * * 2'
+    - cron: '00 9 * * *'
 
 jobs:
   analyze:
@@ -61,9 +61,9 @@ jobs:
       if: matrix.build-mode == 'manual'
       shell: bash
       run: |
-        dotnet clean
-        dotnet restore
-        dotnet build --configuration Release --no-restore
+        dotnet clean src/TaskSystemAPI.sln
+        dotnet restore src/TaskSystemAPI.sln
+        dotnet build src/TaskSystemAPI.sln --configuration Release --no-restore
 
     # Add any setup steps before running the `github/codeql-action/init` action.
     # This includes steps like installing compilers or runtimes (`actions/setup-node`
