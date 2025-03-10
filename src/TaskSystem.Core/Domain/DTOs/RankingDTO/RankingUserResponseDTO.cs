@@ -1,4 +1,4 @@
-﻿using StudyBattle.core.Domain.DTOs.UserDTO;
+﻿using TaskSystem.Core.Domain.DTOs.UserDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

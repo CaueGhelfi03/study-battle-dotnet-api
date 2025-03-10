@@ -14,6 +14,15 @@ namespace StudyBattle.API.Services.Generic
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TCreateDTO, TEntity>();
+                cfg.CreateMap<TUpdateDTO, TEntity>();
+                cfg.CreateMap<TEntity, TResponseDTO>();
+            });
+
+            _mapper = config.CreateMapper();
         }
 
         public async Task<TResponseDTO> CreateAsync(TCreateDTO createDTO)

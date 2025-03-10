@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskSystem.Core.Domain.Enums.Status;
+﻿using TaskSystem.Core.Domain.Enums.Status;
 
 namespace TaskSystem.Core.Domain.DTOs.ChallengeDTO
 {
