@@ -29,6 +29,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+      # Set up the .NET SDK
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v3.3.1
+      with:
+        dotnet-version: 8.x
+        dotnet-quality: daily
+
     # Build the application before initializing CodeQL
     - name: Build da aplicação
       if: matrix.build-mode == 'manual'
@@ -37,13 +44,6 @@ jobs:
         dotnet clean src/TaskSystemAPI.sln
         dotnet restore src/TaskSystemAPI.sln
         dotnet build src/TaskSystemAPI.sln --configuration Release --no-restore
-
-    # Set up the .NET SDK
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v3.3.1
-      with:
-        dotnet-version: 8.x
-        dotnet-quality: daily
 
     # Initialize CodeQL (after build)
     - name: Initialize CodeQL
