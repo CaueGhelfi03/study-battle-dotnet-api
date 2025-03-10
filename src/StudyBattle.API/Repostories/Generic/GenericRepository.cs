@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaDeTarefas.Data;
 using StudyBattle.API.Repostories.Interfaces.GenericRepository;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace StudyBattle.API.Repostories.Generic
 {

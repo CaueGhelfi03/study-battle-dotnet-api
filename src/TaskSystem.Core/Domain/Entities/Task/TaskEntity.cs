@@ -1,11 +1,11 @@
-﻿using StudyBattle.core.Domain.Entities.Challenge;
+﻿using TaskSystem.Core.Domain.Entities.Challenge;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskSystem.Core.Domain.Models.User;
 
 namespace TaskSystem.Core.Domain.Models.Task
 {
-    [Table("Tasks")]
+    [Table("Task")]
     public class TaskEntity
     {
         [Key]
