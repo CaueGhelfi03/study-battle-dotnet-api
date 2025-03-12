@@ -54,7 +54,7 @@ namespace StudyBattle.API.Services.Generic
                 var entity = await _repository.GetByIdAsync(id);
                 if (entity == null)
                     return false;
-                _ = _repository.DeleteAsync(id);
+                _ = await _repository.DeleteAsync(id);
                 return true;
             }
             catch (Exception ex)
