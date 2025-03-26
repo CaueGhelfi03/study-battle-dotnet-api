@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\Interfaces\NewFolder\**" />
-    <Content Remove="Services\Interfaces\NewFolder\**" />
-    <EmbeddedResource Remove="Services\Interfaces\NewFolder\**" />
-    <None Remove="Services\Interfaces\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>

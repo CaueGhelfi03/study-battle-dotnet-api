@@ -9,13 +9,13 @@ using TaskSystem.Repostories.Interfaces.UserRepository;
 
 namespace StudyBattle.API.UserService
 {
-    public class UserService : GenericService<UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
+    public class UserService : GenericService<Guid,UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
 
         public UserService(
-            IGenericRepository<UserEntity> repository, 
+            IGenericRepository<Guid,UserEntity> repository, 
             IMapper mapper,
             IUserRepository userRepository, 
             ICommonService commonService

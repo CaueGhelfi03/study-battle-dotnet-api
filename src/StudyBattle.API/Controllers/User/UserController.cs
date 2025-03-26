@@ -25,40 +25,6 @@ namespace SistemaDeTarefas.Controllers.User
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<UserResponseDTO>>> GetAllAsync()
-        {
-            try
-            {
-                var users = await _userService.GetAllAsync();
-
-                if (!users.SafeAny())
-                    return NoContent();
-
-                return Ok(users);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [Route("/api/[controller]/{id}")]
-        [HttpGet]
-        public async Task<ActionResult<UserResponseDTO>> GetByIdAsync([FromRoute] Guid id)
-        {
-            try
-            {
-                var user = await _userService.GetByIdAsync(id);
-                return Ok(user);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpPatch]
         public async Task<ActionResult<UserResponseDTO>> UpdateAsync([Required][FromQuery] Guid id, [FromBody] UserUpdateDTO userRequest)
         {
@@ -87,6 +53,40 @@ namespace SistemaDeTarefas.Controllers.User
             {
                 await _userService.DeleteAsync(id);
                 return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<UserResponseDTO>>> GetAllAsync()
+        {
+            try
+            {
+                var users = await _userService.GetAllAsync();
+
+                if (!users.SafeAny())
+                    return NoContent();
+
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("/api/[controller]/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<UserResponseDTO>> GetByIdAsync([FromRoute] Guid id)
+        {
+            try
+            {
+                var user = await _userService.GetByIdAsync(id);
+                return Ok(user);
+
             }
             catch (Exception ex)
             {
