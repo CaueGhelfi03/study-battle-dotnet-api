@@ -4,7 +4,7 @@ using StudyBattle.API.Repostories.Interfaces.GenericRepository;
 
 namespace StudyBattle.API.Repostories.Generic
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TKey,TEntity> : IGenericRepository<TKey,TEntity> where TEntity : class
     {
         protected readonly TaskSystemDBContext _context;
         protected readonly DbSet<TEntity> _entities;
@@ -21,12 +21,15 @@ namespace StudyBattle.API.Repostories.Generic
             {
                 throw new ArgumentNullException(nameof(entity));
             }
+            //Retornar vazio e não trolar
+            //Se eu não espero o erro eu TROLO
+            //Se eu imagino o erro eu TRATAR
 
             try
             {
-                await _entities.AddAsync(entity);
+                var newEntity = await _entities.AddAsync(entity);
                 await _context.SaveChangesAsync();
-                return entity;
+                return newEntity.Entity;
             }
             catch (Exception ex)
             {
@@ -34,7 +37,7 @@ namespace StudyBattle.API.Repostories.Generic
             }
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(TKey id)
         {
             try
             {
@@ -66,7 +69,7 @@ namespace StudyBattle.API.Repostories.Generic
             }
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public async Task<TEntity> GetByIdAsync(TKey id)
         {
             try
             {
@@ -78,20 +81,15 @@ namespace StudyBattle.API.Repostories.Generic
             }
         }
 
-        public async Task<TEntity> UpdateAsync(Guid id, TEntity entity)
+        public async Task<TEntity> UpdateAsync(TKey id, TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             try
             {
                 var existingEntity = await GetByIdAsync(id);
-                if (existingEntity == null)
-                {
-                    throw new ArgumentException("Entity not found");
-                }
+                if (existingEntity == null) throw new ArgumentException("Entity not found");
+                
 
                 _context.Entry(existingEntity).CurrentValues.SetValues(entity);
 
