@@ -24,6 +24,36 @@ namespace StudyBattle.API.Controllers.Challenge
             }
         }
 
+        [HttpPatch]
+        public async Task<ActionResult<ChallengeResponseDTO>> UpdateChallenge([Required][FromQuery] Guid Id, [FromBody] ChallengeUpdateDTO challengeUpdateDTO)
+        {
+            try
+            {
+                var challengeUpdated = await service.UpdateAsync(Id, challengeUpdateDTO);
+                return Ok(challengeUpdated);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException);
+            }
+        }
+
+        [Route("{Id}")]
+        [HttpDelete]
+        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid Id)
+        {
+            try
+            {
+                await service.DeleteAsync(Id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException);
+            }
+
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ChallengeResponseDTO>>> GetAllChallenges()
         {
@@ -54,36 +84,6 @@ namespace StudyBattle.API.Controllers.Challenge
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        [HttpPatch]
-        public async Task<ActionResult<ChallengeResponseDTO>> UpdateChallenge([Required][FromQuery] Guid Id, [FromBody] ChallengeUpdateDTO challengeUpdateDTO)
-        {
-            try
-            {
-                var challengeUpdated = await service.UpdateAsync(Id, challengeUpdateDTO);
-                return Ok(challengeUpdated);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.InnerException);
-            }
-        }
-
-        [Route("{Id}")]
-        [HttpDelete]
-        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid Id)
-        {
-            try
-            {
-                await service.DeleteAsync(Id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.InnerException);
-            }
-
         }
     }
 }

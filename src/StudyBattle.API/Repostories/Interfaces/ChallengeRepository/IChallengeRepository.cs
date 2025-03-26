@@ -1,13 +1,11 @@
-﻿using TaskSystem.Core.Domain.Entities.Challenge;
+﻿using StudyBattle.API.Repostories.Interfaces.GenericRepository;
+using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
+using TaskSystem.Core.Domain.Entities.Challenge;
 
 namespace StudyBattle.API.Repostories.Interfaces.ChallengeRepository
 {
-    public interface IChallengeRepository
+    public interface IChallengeRepository : IGenericRepository<Guid,ChallengeEntity>
     {
-        Task<ChallengeEntity> GetByIdAsync(Guid id);
-        Task<IEnumerable<ChallengeEntity>> GetAllAsync();
-        Task<ChallengeEntity> CreateAsync(ChallengeEntity entity);
-        Task<ChallengeEntity> UpdateAsync(Guid id, ChallengeEntity entity);
-        Task<bool> DeleteAsync(Guid id);
+
     }
 }

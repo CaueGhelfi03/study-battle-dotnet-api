@@ -10,13 +10,13 @@ using StudyBattle.API.Interfaces.ICommon;
 
 namespace StudyBattle.API.Services.Challenge
 {
-    public class ChallengeService : GenericService<ChallengeEntity, ChallengeCreateDTO, ChallengeUpdateDTO, ChallengeResponseDTO>, IChallengeService
+    public class ChallengeService : GenericService<Guid,ChallengeEntity, ChallengeCreateDTO, ChallengeUpdateDTO, ChallengeResponseDTO>, IChallengeService
     {
         private readonly IChallengeRepository _challengeRepository;
         private readonly IMapper _mapper;
 
         public ChallengeService(
-            IGenericRepository<ChallengeEntity> repository, 
+            IGenericRepository<Guid,ChallengeEntity> repository, 
             IMapper mapper,
             IChallengeRepository challengeRepository,
             ICommonService commonService
