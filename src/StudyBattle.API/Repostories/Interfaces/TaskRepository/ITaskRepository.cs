@@ -1,14 +1,11 @@
-﻿using TaskSystem.Core.Domain.Models.Task;
+﻿using StudyBattle.API.Repostories.Interfaces.GenericRepository;
+using TaskSystem.Core.Domain.Models.Task;
 
 namespace TaskSystem.Repostories.Interfaces.TaskRepository
 {
-    public interface ITaskRepository
+    public interface ITaskRepository : IGenericRepository<Guid, TaskEntity> 
     {
-        Task<List<TaskEntity>> GetAll();
-        Task<TaskEntity> GetById(Guid id);
-        Task<TaskEntity> AddTask(TaskEntity task);
-        Task<TaskEntity> UpdateTask(TaskEntity task, Guid id);
-        Task<bool> DeleteTask(Guid id);
-
+        Task<ICollection<TaskEntity>> GetTasksByUserIdAsync(Guid userId);
+        Task<ICollection<TaskEntity>> GetTasksByChallengeIdAsync(Guid challengeId);
     }
 }
