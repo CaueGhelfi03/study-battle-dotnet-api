@@ -36,9 +36,5 @@ namespace TaskSystem.Core.Domain.Models.Task
 
         [Column("task_status")]
         public Enums.Status.StatusEnum Status { get; set; } = Enums.Status.StatusEnum.Pending;
-
-        public TaskEntity()
-        {
-        }
     }
 }
