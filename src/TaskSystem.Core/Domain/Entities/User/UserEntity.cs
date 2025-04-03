@@ -26,6 +26,7 @@ namespace TaskSystem.Core.Domain.Models.User
         public string UserPassword {  get; set; }
 
         public ICollection<TaskEntity> Tasks = [];
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

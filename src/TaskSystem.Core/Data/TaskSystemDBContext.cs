@@ -22,6 +22,12 @@ namespace SistemaDeTarefas.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(u => u.Tasks)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId);
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

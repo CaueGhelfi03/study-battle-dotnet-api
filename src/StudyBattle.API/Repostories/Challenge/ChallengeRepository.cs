@@ -1,41 +1,41 @@
-﻿using SistemaDeTarefas.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaDeTarefas.Data;
+using StudyBattle.API.Repostories.Generic;
 using StudyBattle.API.Repostories.Interfaces.ChallengeRepository;
+using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
 using TaskSystem.Core.Domain.Entities.Challenge;
 
 namespace StudyBattle.API.Repostories.Challenge
 {
-    public class ChallengeRepository : IChallengeRepository
+    public class ChallengeRepository : GenericRepository<Guid,ChallengeEntity>, IChallengeRepository
     {
-        private readonly TaskSystemDBContext _dbContext;
-
-        public ChallengeRepository(TaskSystemDBContext dBContext)
+        public ChallengeRepository(TaskSystemDBContext dBContext) : base(dBContext)
         {
-            _dbContext = dBContext;
         }
 
-        public Task<ChallengeEntity> CreateAsync(ChallengeEntity entity)
+        public async Task<ChallengeEntity> CreateAsync(ChallengeEntity entity)
         {
-            throw new NotImplementedException();
+            return await base.CreateAsync(entity);
         }
 
-        public Task<bool> DeleteAsync(Guid id)
+        public async Task<bool?> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await base.DeleteAsync(id);
         }
 
-        public Task<IEnumerable<ChallengeEntity>> GetAllAsync()
+        public async Task<IEnumerable<ChallengeEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await base.GetAllAsync();
         }
 
-        public Task<ChallengeEntity> GetByIdAsync(Guid id)
+        public async Task<ChallengeEntity> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await base.GetByIdAsync(id);
         }
 
-        public Task<ChallengeEntity> UpdateAsync(Guid id, ChallengeEntity entity)
+        public async Task<ChallengeEntity> UpdateAsync(Guid id, ChallengeEntity entity)
         {
-            throw new NotImplementedException();
+            return await base.UpdateAsync(id, entity);
         }
     }
 }

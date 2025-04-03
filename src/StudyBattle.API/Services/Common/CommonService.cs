@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
+using StudyBattle.API.Interfaces.ICommon;
 using System.Net.Mail;
 using System.Security.Cryptography;
-using StudyBattle.API.Interfaces.ICommon;
 
 namespace StudyBattle.API.Common
 {
@@ -40,6 +38,4 @@ namespace StudyBattle.API.Common
             return hashed;
         }
     }
-
-
 }

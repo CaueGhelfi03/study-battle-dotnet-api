@@ -15,9 +15,6 @@ namespace TaskSystem.Core.Utils.Extensions
         {
             try
             {
-                if (value.IsNullOrEmpty())
-                    return false;
-
                 MailAddress email = new(value);
 
                 return email.Address == value;
@@ -26,7 +23,6 @@ namespace TaskSystem.Core.Utils.Extensions
             {
                 return false;
             }
-            
         }
 
         public static bool IsValidCPF(this string cpf)

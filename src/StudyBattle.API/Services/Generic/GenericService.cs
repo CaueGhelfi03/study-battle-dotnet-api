@@ -1,28 +1,20 @@
 ﻿using AutoMapper;
 using StudyBattle.API.Repostories.Interfaces.GenericRepository;
 using StudyBattle.API.Services.Interfaces.Generic;
+using TaskSystem.Core.Domain.Models.User;
 
 namespace StudyBattle.API.Services.Generic
 {
-    public class GenericService<TEntity, TCreateDTO, TUpdateDTO, TResponseDTO> : IGenericService
-        <TEntity, TCreateDTO, TUpdateDTO, TResponseDTO> where TEntity : class
+    public class GenericService<TKey,TEntity, TCreateDTO, TUpdateDTO, TResponseDTO> : IGenericService
+        <TKey,TEntity, TCreateDTO, TUpdateDTO, TResponseDTO> where TEntity : class
     {
-        protected readonly IGenericRepository<TEntity> _repository;
+        protected readonly IGenericRepository<TKey,TEntity> _repository;
         protected readonly IMapper _mapper;
 
-        public GenericService(IGenericRepository<TEntity> repository, IMapper mapper)
+        public GenericService(IGenericRepository<TKey,TEntity> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
-
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<TCreateDTO, TEntity>();
-                cfg.CreateMap<TUpdateDTO, TEntity>();
-                cfg.CreateMap<TEntity, TResponseDTO>();
-            });
-
-            _mapper = config.CreateMapper();
         }
 
         public async Task<TResponseDTO> CreateAsync(TCreateDTO createDTO)
@@ -47,14 +39,14 @@ namespace StudyBattle.API.Services.Generic
 
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(TKey id)
         {
             try
             {
                 var entity = await _repository.GetByIdAsync(id);
                 if (entity == null)
                     return false;
-                _ = _repository.DeleteAsync(id);
+                _ = await _repository.DeleteAsync(id);
                 return true;
             }
             catch (Exception ex)
@@ -77,7 +69,7 @@ namespace StudyBattle.API.Services.Generic
             }
         }
 
-        public async Task<TResponseDTO> GetByIdAsync(Guid id)
+        public async Task<TResponseDTO> GetByIdAsync(TKey id)
         {
             try
             {
@@ -92,7 +84,7 @@ namespace StudyBattle.API.Services.Generic
 
         }
 
-        public async Task<TResponseDTO> UpdateAsync(Guid id, TUpdateDTO updateDTO)
+        public async Task<TResponseDTO> UpdateAsync(TKey id, TUpdateDTO updateDTO)
         {
             try
             {
