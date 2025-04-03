@@ -8,6 +8,7 @@ namespace StudyBattle.API.Interfaces.User
     {
         Task<UserResponseDTO> AddUserAsync(UserCreateDTO user);
         Task<bool> ExistsEmailAsync(string email);
+        Task<IEnumerable<UserResponseDTO>> GetAllUsersWithTasksAsync();
     }
 }
 

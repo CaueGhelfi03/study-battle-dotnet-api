@@ -11,6 +11,6 @@ namespace TaskSystem.Repostories.Interfaces.UserRepository
         //Task<UserEntity> UpdateUserAsync(Guid id, UserEntity user);
         //Task<bool?> DeleteUserAsync(Guid id);
         Task<bool> ExistsEmailAsync(string email);
-
+        Task<IEnumerable<UserEntity>> GetAllUsersWithTasksAsync();
     }
 }

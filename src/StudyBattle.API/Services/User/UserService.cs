@@ -64,5 +64,18 @@ namespace StudyBattle.API.UserService
         {
             return await _userRepository.ExistsEmailAsync(email);
         }
+
+        public async Task<IEnumerable<UserResponseDTO>> GetAllUsersWithTasksAsync()
+        {
+            try
+            {
+                var users = await _userRepository.GetAllUsersWithTasksAsync();
+                return _mapper.Map<IEnumerable<UserResponseDTO>>(users);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}", ex);
+            }
+        }
     }
 }

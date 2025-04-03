@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using StudyBattle.API.Repostories.Interfaces.GenericRepository;
 using StudyBattle.API.Services.Interfaces.Generic;
+using TaskSystem.Core.Domain.Models.User;
 
 namespace StudyBattle.API.Services.Generic
 {
