@@ -3,7 +3,7 @@ using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
 
 namespace TaskSystem.Core.Domain.DTOs.TaskDTO
 {
-    public class TaskResponseDTO
+    public record TaskResponseDTO
     {
         public ChallengeResponseDTO Challenge { get; set; }
         public Guid Id{ get; set; }

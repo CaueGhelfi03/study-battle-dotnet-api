@@ -16,6 +16,10 @@ using StudyBattle.API.Interfaces.User;
 using StudyBattle.API.UserService;
 using StudyBattle.API.Repostories.Interfaces.ChallengeRepository;
 using StudyBattle.API.Repostories.Challenge;
+using TaskSystem.Repostories.Interfaces.TaskRepository;
+using StudyBattle.API.Repostories.Task;
+using StudyBattle.API.Services.Interfaces.Task;
+using StudyBattle.API.Services.Task;
 
 namespace SistemaDeTarefas
 {
@@ -31,23 +35,25 @@ namespace SistemaDeTarefas
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
             builder.Services.AddDbContext<TaskSystemDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped(typeof(GenericService<,,,>));
 
             #region Services
             builder.Services.AddDbContext<TaskSystemDBContext>();
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<IChallengeService, ChallengeService>();
+            builder.Services.AddTransient<ITaskService, TaskService>();
             builder.Services.AddTransient<ICommonService, CommonService>();
-            builder.Services.AddTransient(typeof(IGenericService<,,,>), typeof(GenericService<,,,>));
+            builder.Services.AddTransient(typeof(IGenericService<,,,,>), typeof(GenericService<,,,,>));
             #endregion
 
 
             #region Repositories
 
-
             builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<IChallengeRepository, ChallengeRepository>();
-            builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddTransient<ITaskRepository, TaskRepository>();
+            builder.Services.AddTransient(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+
+
 
             #endregion
 

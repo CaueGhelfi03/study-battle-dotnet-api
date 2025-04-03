@@ -9,13 +9,13 @@ using TaskSystem.Repostories.Interfaces.UserRepository;
 
 namespace StudyBattle.API.UserService
 {
-    public class UserService : GenericService<UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
+    public class UserService : GenericService<Guid,UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
 
         public UserService(
-            IGenericRepository<UserEntity> repository, 
+            IGenericRepository<Guid,UserEntity> repository, 
             IMapper mapper,
             IUserRepository userRepository, 
             ICommonService commonService
@@ -63,6 +63,19 @@ namespace StudyBattle.API.UserService
         public async Task<bool> ExistsEmailAsync(string email)
         {
             return await _userRepository.ExistsEmailAsync(email);
+        }
+
+        public async Task<IEnumerable<UserResponseDTO>> GetAllUsersWithTasksAsync()
+        {
+            try
+            {
+                var users = await _userRepository.GetAllUsersWithTasksAsync();
+                return _mapper.Map<IEnumerable<UserResponseDTO>>(users);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}", ex);
+            }
         }
     }
 }
