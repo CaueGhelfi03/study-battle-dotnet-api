@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskSystem.Core.Domain.Models.User;
+using TaskSystem.Core.Domain.Enums.TaskComplexity;
 
 namespace TaskSystem.Core.Domain.Models.Task
 {
@@ -29,12 +30,18 @@ namespace TaskSystem.Core.Domain.Models.Task
         public string TaskName { get; set; }
 
         [Column("task_description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column("task_createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow ;
 
+        [Column("task_lastCompletedAt")]
+        public DateTime? LastCompletedAt {  get; set; }
+
         [Column("task_status")]
         public Enums.Status.StatusEnum Status { get; set; } = Enums.Status.StatusEnum.Pending;
+
+        [Column("task_complexity")]
+        public TaskComplexityEnum Complexity { get; set; }
     }
 }
