@@ -8,8 +8,10 @@ namespace TaskSystem.Core.Domain.Entities.Score
     public class ScoreEntity
     {
         [Key]
+        [Column("score_id")]
         public Guid Id { get; set; }
-        UserEntity User { get; set; }
-        int Points { get; set; } = 0;
+        public UserEntity? User { get; set; }
+        [Column("score_points")]
+        public int Points { get; set; } = 0;
     }
 }

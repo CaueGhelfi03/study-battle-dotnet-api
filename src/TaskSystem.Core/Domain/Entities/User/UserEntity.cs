@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskSystem.Core.Domain.Entities.Challenge;
+using TaskSystem.Core.Domain.Entities.UserChallengeProgress;
 using TaskSystem.Core.Domain.Models.Task;
 
 namespace TaskSystem.Core.Domain.Models.User
@@ -25,8 +26,9 @@ namespace TaskSystem.Core.Domain.Models.User
         [Required]
         public string UserPassword {  get; set; }
 
-        public ICollection<TaskEntity> Tasks = [];
-
+        [Column("user_createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public ICollection<UserProgressEntity> UserProgress = new HashSet<UserProgressEntity>();
+        public ICollection<TaskEntity> Tasks = [];
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TaskSystem.Core.Domain.Entities.UserChallengeProgress;
 using TaskSystem.Core.Domain.Enums.Status;
 using TaskSystem.Core.Domain.Models.User;
 
@@ -10,6 +11,7 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
     {
         [Key]
         [Required]
+        [Column("challenge_id")]
         public Guid Id { get; set; } = new Guid();
 
         [Column("challenge_name")]
@@ -34,6 +36,7 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
         public StatusEnum status { get; set; }
 
         public ICollection<UserEntity>? Users { get; set; } = [];
+        public ICollection<UserProgressEntity> UserProgress { get; set; } = new HashSet<UserProgressEntity>();
 
     }
 }
