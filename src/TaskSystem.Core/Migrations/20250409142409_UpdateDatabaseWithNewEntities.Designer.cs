@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaDeTarefas.Data;
 
@@ -11,9 +12,11 @@ using SistemaDeTarefas.Data;
 namespace TaskSystem.Core.Migrations
 {
     [DbContext(typeof(TaskSystemDBContext))]
-    partial class TaskSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250409142409_UpdateDatabaseWithNewEntities")]
+    partial class UpdateDatabaseWithNewEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,18 +32,9 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
-                    b.Property<string>("ChallengeComplexity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("challenge_complexity");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("challenge_createdAt");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("challenge_created_By");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64,9 +58,8 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("challenge_start");
 
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int>("status")
+                        .HasColumnType("int")
                         .HasColumnName("challenge_status");
 
                     b.HasKey("Id");
@@ -129,9 +122,8 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("int")
                         .HasColumnName("completion_score");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int>("Status")
+                        .HasColumnType("int")
                         .HasColumnName("status");
 
                     b.Property<Guid>("TaskId")
@@ -162,9 +154,8 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
-                    b.Property<string>("Complexity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int>("Complexity")
+                        .HasColumnType("int")
                         .HasColumnName("task_complexity");
 
                     b.Property<DateTime>("CreatedAt")

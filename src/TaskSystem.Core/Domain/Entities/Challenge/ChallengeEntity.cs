@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TaskSystem.Core.Domain.Entities.UserChallengeProgress;
 using TaskSystem.Core.Domain.Enums.Status;
+using TaskSystem.Core.Domain.Enums.TaskComplexity;
+using TaskSystem.Core.Domain.Models.Task;
 using TaskSystem.Core.Domain.Models.User;
 
 namespace TaskSystem.Core.Domain.Entities.Challenge
@@ -13,6 +15,9 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
         [Required]
         [Column("challenge_id")]
         public Guid Id { get; set; } = new Guid();
+
+        [Column("challenge_created_By")]
+        public Guid CreatedBy { get; set; }
 
         [Column("challenge_name")]
         public string Name { get; set; }
@@ -35,8 +40,11 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
         [Column("challenge_status")]
         public StatusEnum status { get; set; }
 
-        public ICollection<UserEntity>? Users { get; set; } = [];
-        public ICollection<UserProgressEntity> UserProgress { get; set; } = new HashSet<UserProgressEntity>();
+        [Column("challenge_complexity")]
+        public TaskComplexityEnum ChallengeComplexity { get; set; } = TaskComplexityEnum.Easy;
+
+        public ICollection<TaskEntity> Tasks { get; set; } = new HashSet<TaskEntity>();
+        public ICollection<ChallengeUserProgressEntity> ChallengeUserProgress { get; set; } = new HashSet<ChallengeUserProgressEntity>();
 
     }
 }
