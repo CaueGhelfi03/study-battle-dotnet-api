@@ -18,13 +18,5 @@ namespace StudyBattle.API.Repostories.Task
         {
             return await _context.Tasks.Where(x => x.ChallengeId == challengeId).ToListAsync();
         }
-
-        public async Task<ICollection<TaskEntity>> GetTasksByUserIdAsync(Guid userId)
-        {
-            return await _context.Tasks.Where(x => x.UserId == userId).ToListAsync();
-        }
-
-
-
     }
 }

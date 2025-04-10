@@ -38,13 +38,13 @@ namespace StudyBattle.API.Controllers.Challenge
             }
         }
 
-        [Route("{Id}")]
+        [Route("{ChallengeId}")]
         [HttpDelete]
-        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid Id)
+        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid ChallengeId)
         {
             try
             {
-                await service.DeleteAsync(Id);
+                await service.DeleteAsync(ChallengeId);
                 return NoContent();
             }
             catch (Exception ex)
@@ -70,19 +70,35 @@ namespace StudyBattle.API.Controllers.Challenge
             }
         }
 
-        [Route("{Id}")]
+        [Route("active")]
         [HttpGet]
-        public async Task<ActionResult<ChallengeResponseDTO>> GetChallengeById([Required][FromRoute] Guid Id)
+        public async Task<ActionResult<ICollection<ChallengeUsersResponseDTO>>> GetAllActiveChallenge()
         {
             try
             {
-                var challenge = await service.GetByIdAsync(Id);
+                var challenges = await service.GetAllChallengesActive();
 
-                return Ok(challenge);
+                return Ok(challenges);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest($"{ex.Message}");
+            }
+        }
+
+        [Route("{ChallengeId}/tasks")]
+        [HttpGet]
+        public async Task<ActionResult<ChallengeTaskResponseDTO>> GetChallengeWithTasksById([Required][FromRoute] Guid ChallengeId)
+        {
+            try
+            {
+                var challenges = await service.GetChallengeWithTasksById(ChallengeId);
+
+                return Ok(challenges);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"{ex.Message}");
             }
         }
     }

@@ -22,9 +22,5 @@ namespace TaskSystem.Repostories.UserRepository
             return false;
         }
 
-        public async Task<IEnumerable<UserEntity>> GetAllUsersWithTasksAsync()
-        {
-            return await _context.Users.Include(x => x.Tasks).AsNoTracking().ToListAsync();
-        }
     }
 }

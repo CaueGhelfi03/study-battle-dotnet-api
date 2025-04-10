@@ -35,26 +35,31 @@ namespace StudyBattle.API.Services.Task
         }
 
 
-        public async Task<TaskResponseDTO> AddTaskToChallengeAsync(TaskCreateDTO taskDTO)
+        public async Task<TaskResponseDTO> AddTaskToChallengeAsync(TaskCreateDTO taskDTO,Guid ChallengeId)
         {
             try
             {
-                var challenge = await _challengeRepository.GetByIdAsync(taskDTO.ChallengeId) ?? throw new Exception("Challenge not found");
-                var user = await _userRepository.GetByIdAsync(taskDTO.UserId) ?? throw new Exception("User not found");
+                var challenge = await _challengeRepository.GetByIdAsync(ChallengeId) ?? throw new Exception("Challenge not found");
 
                 var task = new TaskEntity
                 {
-                    ChallengeId = taskDTO.ChallengeId,
-                    UserId = taskDTO.UserId,
+                    Id = Guid.NewGuid(),
+                    Challenge = challenge,
                     TaskName = taskDTO.TaskName,
                     Description = taskDTO.Description,
                     CreatedAt = taskDTO.CreatedAt,
+                    Complexity = taskDTO.Complexity,
                     Status = taskDTO.Status,
                 };
 
                 await _repository.CreateAsync(task);
-                var mappedTask = _mapper.Map<TaskResponseDTO>(task);
-                return mappedTask;
+
+                challenge.Tasks ??= [];
+                challenge.Tasks.Add(task);
+
+                await _challengeRepository.UpdateAsync(challenge.Id, challenge);
+
+                return _mapper.Map<TaskResponseDTO>(task);
 
             }
             catch (Exception ex)
@@ -71,7 +76,6 @@ namespace StudyBattle.API.Services.Task
                 var user = await _userRepository.GetByIdAsync(UserId) ?? throw new Exception("User not found");
                 var task = await _repository.GetByIdAsync(TaskId) ?? throw new Exception("Task not found");
 
-                if (task.UserId != UserId) throw new Exception("User is not authorized to complete this task.");
 
                 task.Status = StatusEnum.Completed;
                 //task.completedAt = DateTime.UtcNow;
@@ -104,23 +108,6 @@ namespace StudyBattle.API.Services.Task
             }
         }
 
-        public async Task<ICollection<TaskResponseDTO>> GetTasksByUserIdAsync(Guid UserId)
-        {
-            try
-            {
-                var user = await _repository.GetByIdAsync(UserId) ?? throw new Exception("User not found");
-
-                ICollection<TaskEntity> tasks = await _taskRepository.GetTasksByUserIdAsync(user.Id) ?? throw new Exception("");
-
-                var mappedTasks = _mapper.Map<ICollection<TaskResponseDTO>>(tasks);
-
-                return mappedTasks;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
     }
 
 }

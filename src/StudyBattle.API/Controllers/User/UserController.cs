@@ -65,7 +65,7 @@ namespace SistemaDeTarefas.Controllers.User
         {
             try
             {
-                var users = await _userService.GetAllUsersWithTasksAsync();
+                var users = await _userService.GetAllAsync();
 
                 if (!users.SafeAny())
                     return NoContent();

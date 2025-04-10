@@ -7,7 +7,8 @@ namespace StudyBattle.API.Services.Interfaces.Challenge
 {
     public interface IChallengeService : IGenericService<Guid,ChallengeEntity, ChallengeCreateDTO, ChallengeUpdateDTO, ChallengeResponseDTO>
     {
-        Task<ChallengeResponseDTO> AddUserOnChallenge(UserResponseDTO user);
-        Task<ChallengeResponseDTO> GetAllChallengeActives();
+        public Task<ICollection<ChallengeUsersResponseDTO>> GetAllChallengesActive();
+        public Task<ChallengeResponseDTO> CreateChallengeAsync(ChallengeCreateDTO challenge);
+        public Task<ChallengeTaskResponseDTO> GetChallengeWithTasksById(Guid ChallengeId);
     }
 }

@@ -13,9 +13,20 @@ namespace StudyBattle.API.Repostories.Challenge
         {
         }
 
-        public async Task<ChallengeEntity> CreateAsync(ChallengeEntity entity)
+        public async Task<ChallengeEntity> CreateChallengeAsync(ChallengeEntity challenge)
         {
-            return await base.CreateAsync(entity);
+            if (challenge == null) throw new ArgumentNullException(nameof(challenge));
+            try
+            {
+                var newChallenge = await _context.AddAsync(challenge);
+                await _context.SaveChangesAsync();
+                return newChallenge.Entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public async Task<bool?> DeleteAsync(Guid id)
@@ -36,6 +47,21 @@ namespace StudyBattle.API.Repostories.Challenge
         public async Task<ChallengeEntity> UpdateAsync(Guid id, ChallengeEntity entity)
         {
             return await base.UpdateAsync(id, entity);
+        }
+
+        public async Task<ICollection<ChallengeEntity>> GetChallengeWithUserProgressAsync(Guid Id)
+        {
+            return await _context.Challenges
+                .Where(c => c.status != TaskSystem.Core.Domain.Enums.Status.StatusEnum.Completed && c.End_Date.Date != DateTime.Today)
+                .Include(c => c.ChallengeUserProgress)
+                .ToListAsync();
+        }
+
+        public async Task<ChallengeEntity> GetChallengeWithTasksById(Guid Id)
+        {
+            return await _context.Challenges
+                .Include(c => c.Tasks)
+                .FirstOrDefaultAsync(c => c.Id == Id);
         }
     }
 }
