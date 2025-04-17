@@ -13,7 +13,6 @@ namespace StudyBattle.API.UserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
-        private readonly IMapper _mapper;
 
         public UserService(
             IGenericRepository<Guid, UserEntity> repository,
@@ -24,7 +23,6 @@ namespace StudyBattle.API.UserService
         {
             _userRepository = userRepository;
             _commonService = commonService;
-            _mapper = mapper;
         }
 
         // Método específico para User
