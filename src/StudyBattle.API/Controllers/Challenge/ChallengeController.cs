@@ -2,6 +2,7 @@
 using StudyBattle.API.Services.Interfaces.Challenge;
 using System.ComponentModel.DataAnnotations;
 using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
+using TaskSystem.Core.Domain.DTOs.ChallengeUserDTO;
 using TaskSystem.Core.Utils.Extensions;
 
 namespace StudyBattle.API.Controllers.Challenge
@@ -38,13 +39,13 @@ namespace StudyBattle.API.Controllers.Challenge
             }
         }
 
-        [Route("{Id}")]
+        [Route("{ChallengeId}")]
         [HttpDelete]
-        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid Id)
+        public async Task<ActionResult<bool?>> DeleteChallenge([Required][FromRoute] Guid ChallengeId)
         {
             try
             {
-                await service.DeleteAsync(Id);
+                await service.DeleteAsync(ChallengeId);
                 return NoContent();
             }
             catch (Exception ex)
@@ -54,35 +55,37 @@ namespace StudyBattle.API.Controllers.Challenge
 
         }
 
+
+        [Route("active")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChallengeResponseDTO>>> GetAllChallenges()
+        public async Task<ActionResult<ICollection<UserProgressResponseDTO>>> GetAllActiveChallenge()
         {
             try
             {
-                var challenges = await service.GetAllAsync();
+                var challenges = await service.GetAllChallengesActive();
                 if (!challenges.SafeAny()) return NoContent();
 
                 return Ok(challenges);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest($"{ex.Message}");
             }
         }
 
-        [Route("{Id}")]
+        [Route("{ChallengeId}/tasks")]
         [HttpGet]
-        public async Task<ActionResult<ChallengeResponseDTO>> GetChallengeById([Required][FromRoute] Guid Id)
+        public async Task<ActionResult<ChallengeTaskResponseDTO>> GetChallengeWithTasksById([Required][FromRoute] Guid ChallengeId)
         {
             try
             {
-                var challenge = await service.GetByIdAsync(Id);
+                var challenges = await service.GetChallengeWithTasksById(ChallengeId);
 
-                return Ok(challenge);
+                return Ok(challenges);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest($"{ex.Message}");
             }
         }
     }

@@ -1,20 +1,18 @@
 ﻿
 using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
+using TaskSystem.Core.Domain.Enums.TaskComplexity;
 
 namespace TaskSystem.Core.Domain.DTOs.TaskDTO
 {
     public record TaskResponseDTO
     {
-        public ChallengeResponseDTO Challenge { get; set; }
-        public Guid Id{ get; set; }
-        public Guid UserId { get; set; }
-        public string Username{ get; set; }
+        public Guid Id { get; set; }
         public string TaskName { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public Enums.Status.StatusEnum Status { get; set; }
-        
-
-
+        public TaskComplexityEnum Complexity { get; set; }
+        public int Order { get; set; }
+        public Guid ChallengeId { get; set; }
     }
 }

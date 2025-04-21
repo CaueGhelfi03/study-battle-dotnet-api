@@ -10,13 +10,12 @@ namespace StudyBattle.API.Controllers.Task
     [Route("/api/[controller]")]
     public class TaskController(ITaskService service) : Controller
     {
-
         [HttpPost]
-        public async Task<ActionResult<TaskResponseDTO>> CreateTask([FromBody] TaskCreateDTO taskCreate)
+        public async Task<ActionResult<TaskResponseDTO>> CreateTask([FromQuery]Guid ChallengeId, [FromBody] TaskCreateDTO taskCreate)
         {
             try
             {
-                var createdTask = await service.AddTaskToChallengeAsync(taskCreate);
+                var createdTask = await service.AddTaskToChallengeAsync(taskCreate,ChallengeId);
                 return Ok(createdTask);
             }
             catch (Exception ex)
@@ -42,7 +41,7 @@ namespace StudyBattle.API.Controllers.Task
         }
 
         [HttpGet]
-        [Route("GetTasksById{TaskId}")]
+        [Route("{TaskId}")]
         public async Task<ActionResult<TaskResponseDTO>> GetTaskById([FromRoute][Required] Guid TaskId)
         {
             try
@@ -58,7 +57,7 @@ namespace StudyBattle.API.Controllers.Task
         }
 
         [HttpGet]
-        [Route("GetTasksByChallengeId{ChallengeId}")]
+        [Route("tasks-by-challenge/{ChallengeId}")]
         public async Task<ActionResult<ICollection<TaskResponseDTO>>> GetTasksByChallengeId([FromRoute][Required]Guid ChallengeId)
         {
             try
@@ -74,7 +73,6 @@ namespace StudyBattle.API.Controllers.Task
         }
 
         [HttpGet]
-        [Route("GetAllTasks")]
         public async Task<ActionResult<ICollection<TaskResponseDTO>>> GetAllTasks()
         {
             try
@@ -86,6 +84,13 @@ namespace StudyBattle.API.Controllers.Task
             {
                 throw new Exception($"{ex.Message}");
             }
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<TaskResponseDTO>> UpdateTaskAsync([FromQuery]Guid TaskId, [FromBody]TaskUpdateDTO TaskUpdateDTO)
+        {
+            var tasks = await service.UpdateAsync(TaskId, TaskUpdateDTO);
+            return Ok(tasks);
         }
     }
 }
