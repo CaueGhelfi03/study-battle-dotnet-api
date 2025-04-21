@@ -11,7 +11,7 @@ namespace StudyBattle.API.Services.Generic
         protected readonly IGenericRepository<TKey,TEntity> _repository;
         protected readonly IMapper _mapper;
 
-        public GenericService(IGenericRepository<TKey,TEntity> repository, IMapper mapper)
+        public GenericService(IGenericRepository<TKey, TEntity> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
