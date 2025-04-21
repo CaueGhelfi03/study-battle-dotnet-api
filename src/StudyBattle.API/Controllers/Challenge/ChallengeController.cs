@@ -2,6 +2,7 @@
 using StudyBattle.API.Services.Interfaces.Challenge;
 using System.ComponentModel.DataAnnotations;
 using TaskSystem.Core.Domain.DTOs.ChallengeDTO;
+using TaskSystem.Core.Domain.DTOs.ChallengeUserDTO;
 using TaskSystem.Core.Utils.Extensions;
 
 namespace StudyBattle.API.Controllers.Challenge
@@ -54,29 +55,15 @@ namespace StudyBattle.API.Controllers.Challenge
 
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChallengeResponseDTO>>> GetAllChallenges()
-        {
-            try
-            {
-                var challenges = await service.GetAllAsync();
-                if (!challenges.SafeAny()) return NoContent();
-
-                return Ok(challenges);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
 
         [Route("active")]
         [HttpGet]
-        public async Task<ActionResult<ICollection<ChallengeUsersResponseDTO>>> GetAllActiveChallenge()
+        public async Task<ActionResult<ICollection<UserProgressResponseDTO>>> GetAllActiveChallenge()
         {
             try
             {
                 var challenges = await service.GetAllChallengesActive();
+                if (!challenges.SafeAny()) return NoContent();
 
                 return Ok(challenges);
             }

@@ -4,7 +4,9 @@ using StudyBattle.API.Repostories.Interfaces.ChallengeRepository;
 using StudyBattle.API.Repostories.Interfaces.GenericRepository;
 using StudyBattle.API.Services.Generic;
 using StudyBattle.API.Services.Interfaces.Task;
+using System.Security;
 using TaskSystem.Core.Domain.DTOs.TaskDTO;
+using TaskSystem.Core.Domain.Entities.UserTaskCompletion;
 using TaskSystem.Core.Domain.Enums.Status;
 using TaskSystem.Core.Domain.Models.Task;
 using TaskSystem.Repostories.Interfaces.TaskRepository;
@@ -69,27 +71,6 @@ namespace StudyBattle.API.Services.Task
 
         }
 
-        public async Task<StatusEnum> CompleteTaskAsync(Guid TaskId, Guid UserId)
-        {
-            try
-            {
-                var user = await _userRepository.GetByIdAsync(UserId) ?? throw new Exception("User not found");
-                var task = await _repository.GetByIdAsync(TaskId) ?? throw new Exception("Task not found");
-
-
-                task.Status = StatusEnum.Completed;
-                //task.completedAt = DateTime.UtcNow;
-
-                await _repository.UpdateAsync(user.Id, task);
-                return task.Status;
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public async Task<ICollection<TaskResponseDTO>> GetTaskByChallengeId(Guid ChallengeId)
         {
             try
@@ -97,8 +78,8 @@ namespace StudyBattle.API.Services.Task
                 var challenge = await _repository.GetByIdAsync(ChallengeId) ?? throw new Exception("Challenge not found");
 
                 ICollection<TaskEntity> tasks = await _taskRepository.GetTasksByChallengeIdAsync(challenge.ChallengeId) ?? throw new Exception("");
-
-                var mappedTasks = _mapper.Map<ICollection<TaskResponseDTO>>(tasks);
+                var ordered = tasks.OrderBy(x => x.Order);
+                var mappedTasks = _mapper.Map<ICollection<TaskResponseDTO>>(ordered);
 
                 return mappedTasks;
             }

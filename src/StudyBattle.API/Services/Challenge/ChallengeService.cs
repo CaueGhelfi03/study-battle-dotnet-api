@@ -13,6 +13,7 @@ using TaskSystem.Core.Domain.Enums.Status;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using TaskSystem.Core.Domain.Entities.UserChallengeProgress;
+using TaskSystem.Core.Domain.DTOs.ChallengeUserDTO;
 
 namespace StudyBattle.API.Services.Challenge
 {
@@ -36,22 +37,15 @@ namespace StudyBattle.API.Services.Challenge
         }
 
 
-        public async Task<ICollection<ChallengeUsersResponseDTO>> GetAllChallengesActive()
+        public async Task<ICollection<ChallengeResponseDTO>> GetAllChallengesActive()
         {
-            try
-            {
                 var challenge = await _challengeRepository.GetAllAsync();
 
-                challenge = challenge.Where(c => c.status == StatusEnum.InProgress || c.status == StatusEnum.Pending);
+                var filtered = challenge.Where(c => c.status == StatusEnum.InProgress || c.status == StatusEnum.Pending).ToList();
 
-                var challengeMapped = _mapper.Map<ICollection<ChallengeUsersResponseDTO>>(challenge);
+                var challengeMapped = _mapper.Map<ICollection<ChallengeResponseDTO>>(filtered);
 
-                return challengeMapped.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return challengeMapped;           
 
         }
 

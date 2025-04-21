@@ -7,10 +7,7 @@ namespace StudyBattle.API.Services.Interfaces.Task
 {
     public interface ITaskService : IGenericService<Guid, TaskEntity, TaskCreateDTO,TaskUpdateDTO,TaskResponseDTO>
     {
-
         Task<TaskResponseDTO> AddTaskToChallengeAsync(TaskCreateDTO taskDTO, Guid ChallengeId);
-        Task<StatusEnum> CompleteTaskAsync(Guid TaskId, Guid UserId);
-
         Task<ICollection<TaskResponseDTO>> GetTaskByChallengeId(Guid ChallengeId);
     }
 }

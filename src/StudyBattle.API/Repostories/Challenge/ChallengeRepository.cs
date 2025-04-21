@@ -29,26 +29,6 @@ namespace StudyBattle.API.Repostories.Challenge
 
         }
 
-        public async Task<bool?> DeleteAsync(Guid id)
-        {
-            return await base.DeleteAsync(id);
-        }
-
-        public async Task<IEnumerable<ChallengeEntity>> GetAllAsync()
-        {
-            return await base.GetAllAsync();
-        }
-
-        public async Task<ChallengeEntity> GetByIdAsync(Guid id)
-        {
-            return await base.GetByIdAsync(id);
-        }
-
-        public async Task<ChallengeEntity> UpdateAsync(Guid id, ChallengeEntity entity)
-        {
-            return await base.UpdateAsync(id, entity);
-        }
-
         public async Task<ICollection<ChallengeEntity>> GetChallengeWithUserProgressAsync(Guid Id)
         {
             return await _context.Challenges
@@ -59,9 +39,13 @@ namespace StudyBattle.API.Repostories.Challenge
 
         public async Task<ChallengeEntity> GetChallengeWithTasksById(Guid Id)
         {
-            return await _context.Challenges
-                .Include(c => c.Tasks)
+            var challenge = await _context.Challenges
+                .Include(c => c.Tasks.OrderBy(t => t.Order))
                 .FirstOrDefaultAsync(c => c.Id == Id);
+
+            if(challenge != null) challenge.Tasks = challenge.Tasks.OrderBy(t => t.Order).ToList();
+
+            return challenge;
         }
     }
 }

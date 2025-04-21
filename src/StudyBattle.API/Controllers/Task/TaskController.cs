@@ -57,7 +57,7 @@ namespace StudyBattle.API.Controllers.Task
         }
 
         [HttpGet]
-        [Route("/challenge/{ChallengeId}")]
+        [Route("tasks-by-challenge/{ChallengeId}")]
         public async Task<ActionResult<ICollection<TaskResponseDTO>>> GetTasksByChallengeId([FromRoute][Required]Guid ChallengeId)
         {
             try
@@ -84,6 +84,13 @@ namespace StudyBattle.API.Controllers.Task
             {
                 throw new Exception($"{ex.Message}");
             }
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<TaskResponseDTO>> UpdateTaskAsync([FromQuery]Guid TaskId, [FromBody]TaskUpdateDTO TaskUpdateDTO)
+        {
+            var tasks = await service.UpdateAsync(TaskId, TaskUpdateDTO);
+            return Ok(tasks);
         }
     }
 }
