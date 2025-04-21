@@ -8,10 +8,10 @@ namespace TaskSystem.Core.Domain.Enums.WeekStreak
 {
     public enum StreakMultiplier
     {
-        Week1 = 12,
-        Week2 = 14,
-        Week3 = 16,
-        Week4 = 18,
-        Week5OrMore = 20,
+        Week1 = 120,
+        Week2 = 140,
+        Week3 = 160,
+        Week4 = 180,
+        Week5OrMore = 200,
     }
 }

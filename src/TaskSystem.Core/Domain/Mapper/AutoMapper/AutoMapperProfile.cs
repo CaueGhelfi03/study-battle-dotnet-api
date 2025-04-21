@@ -5,6 +5,11 @@ using TaskSystem.Core.Domain.DTOs.TaskDTO;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
 using TaskSystem.Core.Domain.Models.Task;
 using TaskSystem.Core.Domain.Models.User;
+using TaskSystem.Core.Domain.Entities.UserChallengeProgress;
+using TaskSystem.Core.Domain.DTOs.ChallengeUserDTO;
+using TaskSystem.Core.Domain.Entities.UserTaskCompletion;
+using TaskSystem.Core.Domain.DTOs.UserTaskCompletationDTO;
+using TaskSystem.Core.Domain.DTOs.UserTaskDTO;
 
 namespace TaskSystem.Core.Domain.Mapper.User
 {
@@ -29,20 +34,46 @@ namespace TaskSystem.Core.Domain.Mapper.User
 
             #region Task
 
-            CreateMap<TaskEntity, TaskResponseDTO>().ReverseMap();
-            CreateMap<TaskEntity, TaskCreateDTO>().ReverseMap();
-
+            CreateMap<TaskResponseDTO, TaskEntity>().ReverseMap()
+                .ForMember(dest => dest.ChallengeId, opt => opt.MapFrom(src=> src.ChallengeId));
+            CreateMap<TaskCreateDTO, TaskEntity>().ReverseMap();
 
             #endregion
 
             #region Challenge
 
-            CreateMap<ChallengeEntity, ChallengeResponseDTO>().ReverseMap();
+            CreateMap<ChallengeResponseDTO, ChallengeEntity>().ReverseMap();
             CreateMap<ChallengeCreateDTO, ChallengeEntity>().ReverseMap();
             CreateMap<ChallengeUpdateDTO, ChallengeEntity>().ReverseMap();
             CreateMap<ChallengeTaskResponseDTO, ChallengeEntity>().ReverseMap()
                 .ForMember(dest => dest.Tasks, opt => opt.MapFrom(src => src.Tasks));
-                
+            CreateMap<ChallengeUserResponseDTO, ChallengeEntity>().ReverseMap();
+
+            #endregion
+
+            #region ChallengeUser
+
+            CreateMap<UserProgressResponseDTO, ChallengeUserProgressEntity>().ReverseMap();
+
+            CreateMap<ChallengeUserResponseDTO, ChallengeUserProgressEntity>().ReverseMap()
+                .ForPath(src => src.Challenge.Id, opt => opt.MapFrom(dest => dest.ChallengeId));
+            CreateMap<ChallengeUserCreateDTO, ChallengeUserProgressEntity>().ReverseMap();
+            CreateMap<ChallengeUserUpdateDTO, ChallengeUserProgressEntity>().ReverseMap();
+
+            CreateMap<ChallengeResponseDTO, ChallengeUserResponseDTO>().ReverseMap();
+            CreateMap<UserProgressResponseDTO, UserProgressResponseDTO>().ReverseMap();
+            CreateMap<UserProgressResponseDTO, ChallengeUserResponseDTO>().ReverseMap();
+
+
+
+            #endregion
+
+            #region UserTask
+
+            CreateMap<UserTaskResponseDTO, UserTaskCompletionEntity>().ReverseMap();
+            CreateMap<UserCreateDTO, UserTaskCompletionEntity>().ReverseMap();
+            CreateMap<UserUpdateDTO, UserTaskCompletionEntity>().ReverseMap();
+            CreateMap<UserAllTasksDTO, UserTaskCompletionEntity>().ReverseMap();
 
             #endregion
         }

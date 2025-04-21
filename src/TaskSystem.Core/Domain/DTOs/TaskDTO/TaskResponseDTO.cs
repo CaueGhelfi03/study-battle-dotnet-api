@@ -12,5 +12,7 @@ namespace TaskSystem.Core.Domain.DTOs.TaskDTO
         public DateTime CreatedAt { get; set; }
         public Enums.Status.StatusEnum Status { get; set; }
         public TaskComplexityEnum Complexity { get; set; }
+        public int Order { get; set; }
+        public Guid ChallengeId { get; set; }
     }
 }
