@@ -23,7 +23,8 @@ namespace TaskSystem.Core.Domain.Models.Task
 
         [Column("task_createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow ;
-
+        [Column("task_order")]
+        public int Order {  get; set; }
         [Column("task_lastCompletedAt")]
         public DateTime? LastCompletedAt {  get; set; }
 

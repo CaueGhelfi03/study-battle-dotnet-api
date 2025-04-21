@@ -23,11 +23,8 @@ namespace TaskSystem.Core.Domain.Entities.UserTaskCompletion
         [Column("completion_date")]
         public DateTime CompletionDate { get; set; } = DateTime.UtcNow;
 
-        [Column("completion_score")]
+        [Column("completion_score")] 
         public int Score { get; set; }
-
-        [Column("is_validated")]
-        public bool IsValidated { get; set; } = true;
 
         [Column("status")]
         public StatusEnum Status { get; set; } = StatusEnum.Completed;

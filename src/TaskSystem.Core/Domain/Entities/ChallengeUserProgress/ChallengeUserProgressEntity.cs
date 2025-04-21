@@ -16,12 +16,14 @@ namespace TaskSystem.Core.Domain.Entities.UserChallengeProgress
         [Key]
         [Column("progress_id")]
         public Guid Id { get; set; } = Guid.NewGuid();
-
         [Column("streak_count")]
         public int StreakCount { get; set; } = 0;
-
         [Column("last_active_date")]
         public DateTime? LastActiveDate { get; set; }
+        [Column("progress_startedAt")]
+        public DateTime StartedAt { get; set; } = DateTime.UtcNow;
+        [Column("progress_endedAt")]
+        public DateTime EndedAt { get; set; }
 
         [Column("progress_total_score")]
         public int TotalScore { get; set; } = 0;

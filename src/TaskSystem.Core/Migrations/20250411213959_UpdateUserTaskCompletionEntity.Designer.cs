@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaDeTarefas.Data;
 
@@ -11,9 +12,11 @@ using SistemaDeTarefas.Data;
 namespace TaskSystem.Core.Migrations
 {
     [DbContext(typeof(TaskSystemDBContext))]
-    partial class TaskSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250411213959_UpdateUserTaskCompletionEntity")]
+    partial class UpdateUserTaskCompletionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,17 +88,9 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
-                    b.Property<DateTime>("EndedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("progress_endedAt");
-
                     b.Property<DateTime?>("LastActiveDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("last_active_date");
-
-                    b.Property<DateTime>("StartedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("progress_startedAt");
 
                     b.Property<int>("StreakCount")
                         .HasColumnType("int")
@@ -182,10 +177,6 @@ namespace TaskSystem.Core.Migrations
                     b.Property<DateTime?>("LastCompletedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("task_lastCompletedAt");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int")
-                        .HasColumnName("task_order");
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
