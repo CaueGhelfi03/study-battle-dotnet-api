@@ -13,18 +13,9 @@ namespace StudyBattle.API.Repostories.Task
         public TaskRepository(TaskSystemDBContext dbContext) : base(dbContext) 
         {
         }
-
         public async Task<ICollection<TaskEntity>> GetTasksByChallengeIdAsync(Guid challengeId)
         {
             return await _context.Tasks.Where(x => x.ChallengeId == challengeId).ToListAsync();
         }
-
-        public async Task<ICollection<TaskEntity>> GetTasksByUserIdAsync(Guid userId)
-        {
-            return await _context.Tasks.Where(x => x.UserId == userId).ToListAsync();
-        }
-
-
-
     }
 }

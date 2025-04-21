@@ -20,6 +20,17 @@ using TaskSystem.Repostories.Interfaces.TaskRepository;
 using StudyBattle.API.Repostories.Task;
 using StudyBattle.API.Services.Interfaces.Task;
 using StudyBattle.API.Services.Task;
+using StudyBattle.API.Repostories.Interfaces.ChallengeUserRepository;
+using StudyBattle.API.Repostories.ChallengeUserProgress;
+using StudyBattle.API.Services.Interfaces.ChallengeUser;
+using StudyBattle.API.Services.ChallengeUserProgress;
+using StudyBattle.API.Repostories.Interfaces.UserTaskRepository;
+using StudyBattle.API.Services.UserTaskCompletation;
+using StudyBattle.API.Services.Interfaces.UserTaskCompletation;
+using StudyBattle.API.Repostories.UserTaskCompletation;
+using AutoMapper;
+using StudyBattle.API.Services.Interfaces.TaskScoreCount;
+using StudyBattle.API.Services.TaskScoreCount;
 
 namespace SistemaDeTarefas
 {
@@ -29,31 +40,35 @@ namespace SistemaDeTarefas
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-            builder.Services.AddDbContext<TaskSystemDBContext>(options =>
+            var services = builder.Services;
+
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddDbContext<TaskSystemDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             #region Services
-            builder.Services.AddDbContext<TaskSystemDBContext>();
-            builder.Services.AddTransient<IUserService, UserService>();
-            builder.Services.AddTransient<IChallengeService, ChallengeService>();
-            builder.Services.AddTransient<ITaskService, TaskService>();
-            builder.Services.AddTransient<ICommonService, CommonService>();
-            builder.Services.AddTransient(typeof(IGenericService<,,,,>), typeof(GenericService<,,,,>));
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserTaskService, UserTaskService>();
+            services.AddScoped<IChallengeService, ChallengeService>();
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IChallengeUserService, ChallengeUserService>();
+            services.AddSingleton<ICommonService, CommonService>();
+            services.AddSingleton<ITaskScoreCountService, TaskScoreCountService>();
+            services.AddTransient(typeof(IGenericService<,,,,>), typeof(GenericService<,,,,>));
             #endregion
 
 
             #region Repositories
 
-            builder.Services.AddTransient<IUserRepository, UserRepository>();
-            builder.Services.AddTransient<IChallengeRepository, ChallengeRepository>();
-            builder.Services.AddTransient<ITaskRepository, TaskRepository>();
-            builder.Services.AddTransient(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
-
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserTaskRepository, UserTaskRepository>();
+            services.AddScoped<IChallengeRepository, ChallengeRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IChallengeUserRepository, ChallengeUserRepository>();
+            services.AddTransient(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
             #endregion
 

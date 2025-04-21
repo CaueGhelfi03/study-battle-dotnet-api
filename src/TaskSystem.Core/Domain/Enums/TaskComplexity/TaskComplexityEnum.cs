@@ -8,9 +8,10 @@ namespace TaskSystem.Core.Domain.Enums.TaskComplexity
 {
     public enum TaskComplexityEnum
     {
-        Easy = 10,
-        Medium = 15,
-        Hard = 20,
-        VeryHard = 30,
+        VeryEasy = 10,
+        Easy = 20,
+        Medium = 30,
+        Hard = 40,
+        VeryHard = 50,
     }
 }

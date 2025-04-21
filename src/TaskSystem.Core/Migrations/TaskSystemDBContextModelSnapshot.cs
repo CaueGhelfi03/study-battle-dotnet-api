@@ -29,9 +29,18 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
+                    b.Property<string>("ChallengeComplexity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("challenge_complexity");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("challenge_createdAt");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("challenge_created_By");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -55,8 +64,9 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("challenge_start");
 
-                    b.Property<int>("status")
-                        .HasColumnType("int")
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("challenge_status");
 
                     b.HasKey("Id");
@@ -64,50 +74,7 @@ namespace TaskSystem.Core.Migrations
                     b.ToTable("Challenge");
                 });
 
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Ranking.RankingEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ChallengeId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ranking_challengeId");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ranking_createdAt");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ranking_updatedAt");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ranking");
-                });
-
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Score.ScoreEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("score_id");
-
-                    b.Property<int>("Points")
-                        .HasColumnType("int")
-                        .HasColumnName("score_points");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Score");
-                });
-
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserChallengeProgress.UserProgressEntity", b =>
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserChallengeProgress.ChallengeUserProgressEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,9 +85,17 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
+                    b.Property<DateTime>("EndedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("progress_endedAt");
+
                     b.Property<DateTime?>("LastActiveDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("last_active_date");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("progress_startedAt");
 
                     b.Property<int>("StreakCount")
                         .HasColumnType("int")
@@ -136,9 +111,48 @@ namespace TaskSystem.Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChallengeId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserChallengeProgress");
+                    b.ToTable("ChallengeUserProgressEntity");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserTaskCompletion.UserTaskCompletionEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("completion_id");
+
+                    b.Property<DateTime>("CompletionDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("completion_date");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int")
+                        .HasColumnName("completion_score");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("status");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("task_id");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserTaskCompletion");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.Task.TaskEntity", b =>
@@ -152,8 +166,9 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("challenge_id");
 
-                    b.Property<int>("Complexity")
-                        .HasColumnType("int")
+                    b.Property<string>("Complexity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("task_complexity");
 
                     b.Property<DateTime>("CreatedAt")
@@ -168,6 +183,10 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("task_lastCompletedAt");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int")
+                        .HasColumnName("task_order");
+
                     b.Property<int>("Status")
                         .HasColumnType("int")
                         .HasColumnName("task_status");
@@ -177,15 +196,9 @@ namespace TaskSystem.Core.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("task_name");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("user_id");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ChallengeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Task");
                 });
@@ -196,9 +209,6 @@ namespace TaskSystem.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("user_id");
-
-                    b.Property<Guid?>("ChallengeEntityId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -221,46 +231,43 @@ namespace TaskSystem.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChallengeEntityId");
-
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Ranking.RankingEntity", b =>
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserChallengeProgress.ChallengeUserProgressEntity", b =>
                 {
                     b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
-                        .WithMany()
-                        .HasForeignKey("Id")
+                        .WithMany("ChallengeUserProgress")
+                        .HasForeignKey("ChallengeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Challenge");
-                });
-
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Score.ScoreEntity", b =>
-                {
                     b.HasOne("TaskSystem.Core.Domain.Models.User.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("ChallengeUserProgress")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Challenge");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserChallengeProgress.UserProgressEntity", b =>
+            modelBuilder.Entity("TaskSystem.Core.Domain.Entities.UserTaskCompletion.UserTaskCompletionEntity", b =>
                 {
-                    b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
-                        .WithMany("UserProgress")
-                        .HasForeignKey("UserId")
+                    b.HasOne("TaskSystem.Core.Domain.Models.Task.TaskEntity", "Task")
+                        .WithMany("UserTaskCompletions")
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TaskSystem.Core.Domain.Models.User.UserEntity", "User")
-                        .WithMany("UserProgress")
+                        .WithMany("UserTaskCompletions")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Challenge");
+                    b.Navigation("Task");
 
                     b.Navigation("User");
                 });
@@ -268,41 +275,31 @@ namespace TaskSystem.Core.Migrations
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.Task.TaskEntity", b =>
                 {
                     b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", "Challenge")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("ChallengeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaskSystem.Core.Domain.Models.User.UserEntity", "User")
-                        .WithMany("Tasks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Challenge");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TaskSystem.Core.Domain.Models.User.UserEntity", b =>
-                {
-                    b.HasOne("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ChallengeEntityId");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Entities.Challenge.ChallengeEntity", b =>
                 {
-                    b.Navigation("UserProgress");
+                    b.Navigation("ChallengeUserProgress");
 
-                    b.Navigation("Users");
+                    b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("TaskSystem.Core.Domain.Models.Task.TaskEntity", b =>
+                {
+                    b.Navigation("UserTaskCompletions");
                 });
 
             modelBuilder.Entity("TaskSystem.Core.Domain.Models.User.UserEntity", b =>
                 {
-                    b.Navigation("Tasks");
+                    b.Navigation("ChallengeUserProgress");
 
-                    b.Navigation("UserProgress");
+                    b.Navigation("UserTaskCompletions");
                 });
 #pragma warning restore 612, 618
         }

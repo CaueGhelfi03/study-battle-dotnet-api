@@ -9,7 +9,6 @@ namespace TaskSystem.Core.Domain.DTOs.UserDTO
         public string Email { get; set; }
         public string UserPassword { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ICollection<TaskEntity> Tasks { get; set; }
 
     }
 }

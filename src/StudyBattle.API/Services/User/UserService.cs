@@ -9,13 +9,13 @@ using TaskSystem.Repostories.Interfaces.UserRepository;
 
 namespace StudyBattle.API.UserService
 {
-    public class UserService : GenericService<Guid, UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
+    public class UserService : GenericService<Guid,UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
 
         public UserService(
-            IGenericRepository<Guid, UserEntity> repository,
+            IGenericRepository<Guid,UserEntity> repository, 
             IMapper mapper,
             IUserRepository userRepository, 
             ICommonService commonService
@@ -60,52 +60,9 @@ namespace StudyBattle.API.UserService
             }
         }
 
-        public Task<UserResponseDTO> CreateAsync(UserCreateDTO createDTO)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> ExistsEmailAsync(string email)
         {
             return await _userRepository.ExistsEmailAsync(email);
-        }
-
-        public Task<IEnumerable<UserResponseDTO>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<UserResponseDTO>> GetAllUsersWithTasksAsync()
-        {
-            try
-            {
-                var users = await _userRepository.GetAllUsersWithTasksAsync();
-                return _mapper.Map<IEnumerable<UserResponseDTO>>(users);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{ex.Message}", ex);
-            }
-        }
-
-        public async Task<UserResponseDTO> GetByIdAsync(Guid id)
-        {
-            var user = await _userRepository.GetByIdAsync(id)
-                ?? throw new ArgumentException($"User with ID {id} not found");
-
-            var mappedUser = _mapper.Map<UserResponseDTO>(user);
-
-            return mappedUser;
-        }
-
-        public Task<UserResponseDTO> UpdateAsync(Guid id, UserUpdateDTO updateDTO)
-        {
-            throw new NotImplementedException();
         }
     }
 }

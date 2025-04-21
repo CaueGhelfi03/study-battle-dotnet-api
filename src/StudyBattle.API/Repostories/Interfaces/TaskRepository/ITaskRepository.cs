@@ -5,7 +5,6 @@ namespace TaskSystem.Repostories.Interfaces.TaskRepository
 {
     public interface ITaskRepository : IGenericRepository<Guid, TaskEntity> 
     {
-        Task<ICollection<TaskEntity>> GetTasksByUserIdAsync(Guid userId);
         Task<ICollection<TaskEntity>> GetTasksByChallengeIdAsync(Guid challengeId);
     }
 }
