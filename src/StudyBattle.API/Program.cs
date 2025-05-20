@@ -31,6 +31,7 @@ using StudyBattle.API.Repostories.UserTaskCompletation;
 using AutoMapper;
 using StudyBattle.API.Services.Interfaces.TaskScoreCount;
 using StudyBattle.API.Services.TaskScoreCount;
+using System.Text.Json.Serialization;
 
 namespace SistemaDeTarefas
 {

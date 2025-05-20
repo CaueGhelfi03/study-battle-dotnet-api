@@ -37,6 +37,7 @@ namespace TaskSystem.Core.Domain.Mapper.User
             CreateMap<TaskResponseDTO, TaskEntity>().ReverseMap()
                 .ForMember(dest => dest.ChallengeId, opt => opt.MapFrom(src=> src.ChallengeId));
             CreateMap<TaskCreateDTO, TaskEntity>().ReverseMap();
+            CreateMap<TaskBasicResponseDTO, TaskEntity>().ReverseMap();
 
             #endregion
 
@@ -64,8 +65,6 @@ namespace TaskSystem.Core.Domain.Mapper.User
             CreateMap<UserProgressResponseDTO, UserProgressResponseDTO>().ReverseMap();
             CreateMap<UserProgressResponseDTO, ChallengeUserResponseDTO>().ReverseMap();
 
-
-
             #endregion
 
             #region UserTask
@@ -73,7 +72,13 @@ namespace TaskSystem.Core.Domain.Mapper.User
             CreateMap<UserTaskResponseDTO, UserTaskCompletionEntity>().ReverseMap();
             CreateMap<UserCreateDTO, UserTaskCompletionEntity>().ReverseMap();
             CreateMap<UserUpdateDTO, UserTaskCompletionEntity>().ReverseMap();
-            CreateMap<UserAllTasksDTO, UserTaskCompletionEntity>().ReverseMap();
+            CreateMap<UserTaskCompletionEntity, UserTaskResponseDTO>()
+                .ForMember(dest => dest.Task, opt => opt.MapFrom(src => src.Task));
+            CreateMap<UserEntity, UserAllTasksDTO>()
+                .ForMember(dest => dest.UserBasicDTO, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.TasksCompletation, opt => opt.MapFrom(src => src.UserTaskCompletions));
+
+
 
             #endregion
         }

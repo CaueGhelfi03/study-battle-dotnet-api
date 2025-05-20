@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskSystem.Core.Domain.DTOs.UserDTO;
 using TaskSystem.Core.Domain.DTOs.UserTaskCompletationDTO;
 
-namespace TaskSystem.Core.Domain.DTOs.UserTaskDTO
+namespace TaskSystem.Core.Domain.DTOs.UserTaskDTO   
 {
     public record UserAllTasksDTO
     {

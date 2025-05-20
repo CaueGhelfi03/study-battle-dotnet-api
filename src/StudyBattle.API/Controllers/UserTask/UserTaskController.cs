@@ -29,7 +29,5 @@ namespace StudyBattle.API.Controllers.UserTask
         {
             return await _service.GetAllTaskCompletationByUser(UserId);
         }
-        
-
     }
 }
