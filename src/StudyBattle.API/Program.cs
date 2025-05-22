@@ -32,6 +32,11 @@ using AutoMapper;
 using StudyBattle.API.Services.Interfaces.TaskScoreCount;
 using StudyBattle.API.Services.TaskScoreCount;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using StudyBattle.API.Services.Interfaces.IAuthService;
+using StudyBattle.API.Services.Authentication;
 
 namespace SistemaDeTarefas
 {
@@ -51,16 +56,41 @@ namespace SistemaDeTarefas
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             #region Services
+
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserTaskService, UserTaskService>();
             services.AddScoped<IChallengeService, ChallengeService>();
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IChallengeUserService, ChallengeUserService>();
             services.AddSingleton<ICommonService, CommonService>();
             services.AddSingleton<ITaskScoreCountService, TaskScoreCountService>();
             services.AddTransient(typeof(IGenericService<,,,,>), typeof(GenericService<,,,,>));
+
             #endregion
 
+            #region Authentication
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(UTF8Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
+
+            #endregion
 
             #region Repositories
 
@@ -75,11 +105,13 @@ namespace SistemaDeTarefas
 
 
             #region Configuration HTTP
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-                app.UseSwagger();
-                app.UseSwaggerUI();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.UseAuthentication();
 
 
             app.UseHttpsRedirection();

@@ -47,5 +47,13 @@ namespace StudyBattle.API.Repostories.Challenge
 
             return challenge;
         }
+
+        public async Task<ICollection<ChallengeEntity>> GetAllChallengeBySubject(string subject)
+        {
+            var challenge = await _context.Challenges
+                .Where(c => c.Subject == subject).ToListAsync();
+            return challenge;
+                
+        }
     }
 }

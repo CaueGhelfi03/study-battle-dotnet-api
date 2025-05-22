@@ -9,15 +9,15 @@ using TaskSystem.Repostories.Interfaces.UserRepository;
 
 namespace StudyBattle.API.UserService
 {
-    public class UserService : GenericService<Guid,UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
+    public class UserService : GenericService<Guid, UserEntity, UserCreateDTO, UserUpdateDTO, UserResponseDTO>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommonService _commonService;
 
         public UserService(
-            IGenericRepository<Guid,UserEntity> repository, 
+            IGenericRepository<Guid, UserEntity> repository,
             IMapper mapper,
-            IUserRepository userRepository, 
+            IUserRepository userRepository,
             ICommonService commonService
         ) : base(repository, mapper)
         {
@@ -32,7 +32,7 @@ namespace StudyBattle.API.UserService
             {
                 if (user is null)
                     throw new ArgumentException("User data cannot be null");
-                
+
                 var isValidEmail = user.ValidateEmail();
 
                 if (!isValidEmail)
@@ -63,6 +63,23 @@ namespace StudyBattle.API.UserService
         public async Task<bool> ExistsEmailAsync(string email)
         {
             return await _userRepository.ExistsEmailAsync(email);
+        }
+
+        public async Task<UserResponseDTO> GetByEmail(string email)
+        {
+            try
+            {
+                var user = await _userRepository.GetByEmail(email);
+
+                var mappedUser = _mapper.Map<UserResponseDTO>(user);
+
+                return mappedUser;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}", ex);
+
+            }
         }
     }
 }
