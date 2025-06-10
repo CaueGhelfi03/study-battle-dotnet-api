@@ -26,7 +26,7 @@ namespace StudyBattle.API.Controllers.ChallengeUserProgress
         }
 
         [HttpGet]
-        [Route("/challenge-progress/user/")]
+        [Route("challenge-progress/user/")]
         public async Task<ActionResult<UserProgressResponseDTO>> GetUserProgress([FromQuery] Guid UserId)
         {
             var userId = await service.GetUserProgress(UserId);
