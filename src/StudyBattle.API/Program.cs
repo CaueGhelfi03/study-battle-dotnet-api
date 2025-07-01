@@ -28,15 +28,15 @@ using StudyBattle.API.Repostories.Interfaces.UserTaskRepository;
 using StudyBattle.API.Services.UserTaskCompletation;
 using StudyBattle.API.Services.Interfaces.UserTaskCompletation;
 using StudyBattle.API.Repostories.UserTaskCompletation;
-using AutoMapper;
 using StudyBattle.API.Services.Interfaces.TaskScoreCount;
 using StudyBattle.API.Services.TaskScoreCount;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using StudyBattle.API.Services.Interfaces.IAuthService;
 using StudyBattle.API.Services.Authentication;
+using StudyBattle.API.Services.CloudinaryService;
+using CloudinaryDotNet;
 
 namespace SistemaDeTarefas
 {
@@ -54,6 +54,8 @@ namespace SistemaDeTarefas
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddDbContext<TaskSystemDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<CloudinarySettings>(
+                builder.Configuration.GetSection("CloudinarySettings"));
 
             #region Services
 
@@ -67,6 +69,14 @@ namespace SistemaDeTarefas
             services.AddSingleton<ITaskScoreCountService, TaskScoreCountService>();
             services.AddTransient(typeof(IGenericService<,,,,>), typeof(GenericService<,,,,>));
 
+            services.AddSingleton(provider =>
+            {
+                var config = provider.GetRequiredService<IConfiguration>();
+                var settings = config.GetSection("CloudinarySettings").Get<CloudinarySettings>();
+
+                var account = new Account(settings?.CloudName, settings?.ApiKey, settings?.ApiSecret);
+                return new Cloudinary(account);
+            });
             #endregion
 
             #region Authentication
