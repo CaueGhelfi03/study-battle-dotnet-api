@@ -11,5 +11,6 @@ namespace StudyBattle.API.Services.Interfaces.Challenge
         public Task<ICollection<ChallengeResponseDTO>> GetAllChallengesActive();
         public Task<ChallengeResponseDTO> CreateChallengeAsync(ChallengeCreateDTO challenge);
         public Task<ChallengeTaskResponseDTO> GetChallengeWithTasksById(Guid ChallengeId);
+        public Task<ICollection<ChallengeResponseDTO>> GetAllChallengeBySubject(string subject);
     }
 }

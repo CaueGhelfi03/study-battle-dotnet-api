@@ -22,5 +22,12 @@ namespace TaskSystem.Repostories.UserRepository
             return false;
         }
 
+        public async Task<UserEntity> GetByEmail(string email)
+        {
+            var user = await base._entities.FirstOrDefaultAsync(x => x.Email.Equals(email));
+
+            return user;
+
+        }
     }
 }

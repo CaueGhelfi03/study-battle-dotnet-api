@@ -10,7 +10,10 @@ using StudyBattle.API.Services.Interfaces.Generic;
 using StudyBattle.API.Services.Interfaces.Task;
 using StudyBattle.API.Services.Interfaces.TaskScoreCount;
 using StudyBattle.API.Services.Interfaces.UserTaskCompletation;
+using System.Threading.Tasks;
 using TaskSystem.Core.Domain.DTOs.ChallengeUserDTO;
+using TaskSystem.Core.Domain.DTOs.TaskDTO;
+using TaskSystem.Core.Domain.DTOs.UserDTO;
 using TaskSystem.Core.Domain.DTOs.UserTaskCompletationDTO;
 using TaskSystem.Core.Domain.DTOs.UserTaskDTO;
 using TaskSystem.Core.Domain.Entities.Challenge;
@@ -20,6 +23,7 @@ using TaskSystem.Core.Domain.Enums.Status;
 using TaskSystem.Core.Domain.Enums.TaskComplexity;
 using TaskSystem.Core.Domain.Models.Task;
 using TaskSystem.Core.Domain.Models.User;
+using TaskSystem.Core.Migrations;
 using TaskSystem.Repostories.Interfaces.TaskRepository;
 using TaskSystem.Repostories.Interfaces.UserRepository;
 
@@ -35,8 +39,6 @@ namespace StudyBattle.API.Services.UserTaskCompletation
         private readonly IChallengeService _challengeService;
         private readonly IChallengeUserService _challengeUser;
         private readonly ITaskScoreCountService _scoreCount;
-
-
 
         public UserTaskService(
             IGenericRepository<Guid, UserTaskCompletionEntity> repository,
@@ -59,25 +61,28 @@ namespace StudyBattle.API.Services.UserTaskCompletation
             _scoreCount = scoreCount;
         }
 
-        public async Task<UserTaskResponseDTO> AddUserCompletation(UserTaskCreateDTO UserTask)
+        public async Task<UserTaskResponseDTO> AddUserCompletation(UserTaskCreateDTO userTask)
         {
-            if (UserTask == null) throw new ArgumentNullException(nameof(UserTask));
+            if (userTask == null) throw new ArgumentNullException(nameof(userTask));
 
-            var user = await _userService.GetByIdAsync(UserTask.UserId)
-                ?? throw new Exception("User not found");
+            var nextTask = await GetNextTask(userTask);
 
-            var task = await _taskService.GetByIdAsync(UserTask.TaskId)
-                ?? throw new Exception("Task not found");
+            var userProgress = await GetUserProgress(userTask.UserId,userTask.TaskId);
 
-            var challengeWithProgress = await _challengeUser.GetChallengeWithUserProgress(task.ChallengeId);
+            var currentTask = await _taskService.GetByIdAsync(userTask.TaskId);
 
-            var challengeUserDTO = _mapper.Map<ChallengeUserResponseDTO>(challengeWithProgress);
+            var score = CalculateScore(currentTask.Complexity, userProgress.StreakCount);
 
-            var currentUserProgress = challengeUserDTO.UserProgress
-                .FirstOrDefault(up => up.UserId == user.Id)
-                ?? throw new Exception("User progress not found for this challenge");
+            return await CreateUserCompletion(userProgress.UserId,currentTask.Id, score);
 
-            var completedTasks = await _userTaskRepository.GetAllTaskCompletationByUser(UserTask.UserId);
+        }
+
+        public async Task<TaskResponseDTO> GetNextTask(UserTaskCreateDTO userTask)
+        {
+            var task = await _taskService.GetByIdAsync(userTask.TaskId) ?? throw new Exception("Task not found");
+
+            var completedTasks = await _userTaskRepository.GetAllTaskCompletationByUser(userTask.UserId);
+
             var allTasks = await _taskRepository.GetTasksByChallengeIdAsync(task.ChallengeId);
 
             var nextTask = allTasks
@@ -87,12 +92,31 @@ namespace StudyBattle.API.Services.UserTaskCompletation
             if (nextTask == null || nextTask.Id != task.Id)
                 throw new Exception("This task cannot be completed yet. Please complete all previous tasks first.");
 
-            var score = _scoreCount.GetScore(task.Complexity, currentUserProgress.StreakCount);
+            return _mapper.Map<TaskResponseDTO>(nextTask);
+        }
+      
+        public async Task<UserProgressResponseDTO> GetUserProgress(Guid userId, Guid challengeId)
+        {
+            var user = await _userService.GetByIdAsync(userId) ?? throw new Exception("User not found");
 
+            var challengeUserProgress = await _challengeUser.GetChallengeWithUserProgress(challengeId);
+
+            return challengeUserProgress.UserProgress
+                .FirstOrDefault(up => up.UserId == user.Id) ?? throw new Exception("User progress not found for this challenge");
+
+        }
+
+        public int CalculateScore(TaskComplexityEnum complexity, int streakCount)
+        {
+            return _scoreCount.GetScore(complexity,streakCount);
+        }
+
+        public async Task<UserTaskResponseDTO> CreateUserCompletion(Guid userId, Guid taskId, int score)
+        {
             var newUserTask = new UserTaskCompletionEntity
             {
-                UserId = user.Id,
-                TaskId = task.Id,
+                UserId = userId,
+                TaskId = taskId,
                 CompletionDate = DateTime.UtcNow,
                 Status = StatusEnum.Completed,
                 Score = score
@@ -105,9 +129,19 @@ namespace StudyBattle.API.Services.UserTaskCompletation
 
         public async Task<UserAllTasksDTO> GetAllTaskCompletationByUser(Guid UserId)
         {
-            var userTasks = await _userTaskRepository.GetAllTaskCompletationByUser(UserId) ?? null;
+            var userTasks = await _userTaskRepository.GetAllTaskCompletationByUser(UserId);
 
-            return _mapper.Map<UserAllTasksDTO>(userTasks);
+            if (userTasks == null || userTasks.Count == 0) throw new Exception("User not found");
+
+            var userBasicDTO = _mapper.Map<UserBasicDTO>(userTasks.First().User);
+
+            var userTaskResponse = _mapper.Map<ICollection<UserTaskResponseDTO>>(userTasks);
+
+            return new UserAllTasksDTO { 
+                UserBasicDTO = userBasicDTO,
+                TasksCompletation = userTaskResponse            
+            };
         }
+
     }
 }

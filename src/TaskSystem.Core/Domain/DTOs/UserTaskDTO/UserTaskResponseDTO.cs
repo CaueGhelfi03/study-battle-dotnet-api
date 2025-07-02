@@ -11,8 +11,8 @@ namespace TaskSystem.Core.Domain.DTOs.UserTaskCompletationDTO
 {
     public record UserTaskResponseDTO
     {
-        public TaskResponseDTO Task{ get; set; }
-        public Guid Id { get; set; }
+        public TaskBasicResponseDTO Task{ get; set; }
+        public Guid IdUserTask { get; set; }
         public StatusEnum Status { get; set; }
         public int Score { get; set; }
     }

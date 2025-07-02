@@ -91,5 +91,22 @@ namespace StudyBattle.API.Services.Challenge
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<ICollection<ChallengeResponseDTO>> GetAllChallengeBySubject(string subject)
+        {
+            try
+            {
+                var challenge = await _challengeRepository.GetAllChallengeBySubject(subject);
+
+                if (challenge == null) return null;
+
+                return _mapper.Map<ICollection<ChallengeResponseDTO>>(challenge);
+            }
+            catch (Exception ex)
+            {
+                throw
+                    new Exception(ex.Message);
+            }
+        }
     }
 }

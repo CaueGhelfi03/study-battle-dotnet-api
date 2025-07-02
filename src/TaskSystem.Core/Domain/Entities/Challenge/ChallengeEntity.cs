@@ -20,12 +20,14 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
         public Guid CreatedBy { get; set; }
 
         [Column("challenge_name")]
+        [Required]
         public string Name { get; set; }
 
         [Column("challenge_description")]
         public string Description { get; set; }
 
         [Column("challenge_duration")]
+        [Required]
         public int DurationDays { get; set; }
 
         [Column("challenge_createdAt")]
@@ -39,6 +41,10 @@ namespace TaskSystem.Core.Domain.Entities.Challenge
 
         [Column("challenge_status")]
         public StatusEnum status { get; set; }
+
+        [Column("challenge_subject")]
+        [Required]
+        public string Subject { get; set; }
 
         [Column("challenge_complexity")]
         public TaskComplexityEnum ChallengeComplexity { get; set; } = TaskComplexityEnum.Easy;
